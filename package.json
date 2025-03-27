@@ -4,11 +4,11 @@
   "description": "",
   "main": "Aeronautica.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node Aeronautica.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "type": "commonjs",
   "dependencies": {
     "date-and-time": "^3.6.0",
