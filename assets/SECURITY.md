@@ -8,7 +8,7 @@ Thanks for helping us keep the Aeronautica Autopilot project secure! If you’ve
 
 **Please avoid sharing security issues publicly until we've had a chance to address them.**
 
-If you’ve spotted a vulnerability, please send us a report through [Cassitly](./NO_LINK_ATTACHED.md).
+If you’ve spotted a vulnerability, please send us a report through [Cassitly](./assets/NO_LINK_ATTACHED.md).
 
 In your report, include:
 

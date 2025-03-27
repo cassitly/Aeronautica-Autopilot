@@ -118,7 +118,7 @@ Configure all of the values to your (aircraft's) liking! 😁
 
 ---
 
-### Questions or concerns? [DM me on Discord @cassitly](./NO_LINK_ATTACHED)
+### Questions or concerns? [DM me on Discord @cassitly](./assets/NO_LINK_ATTACHED)
 
 ---
 

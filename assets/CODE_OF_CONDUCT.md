@@ -69,7 +69,7 @@ If any unacceptable behavior happens outside community activities but could affe
 
 ## 10. Contact Info
 
-You can reach me on Discord: [@Cassitly](./NO_LINK_ATTACHED.md).
+You can reach me on Discord: [@Cassitly](./assets/NO_LINK_ATTACHED.md).
 
 ## 11. License and Attribution
 
