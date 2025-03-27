@@ -19,33 +19,57 @@ function notify(...msg) {
 
 async function capture(imgPath, imgArrary) {
     try {
-        const path = "./output/screen_full.png"; // Sets the path for the new img
+        const fullPath = "./output/screen_full.png";
 
         notify("[!] Debug : Taking Screenshot");
-        /// await screenshot({ filename: path });
-        // await sharp(path).extract({ left: 1, top: 40, width: 1918, height: 1034 }).toFile(imgPath);
-        // await sharp(path).resize(1920, 1040).toFile(imgPath)
+        await screenshot({ filename: imgPath });
+
+        // Resize first and save to imgPath
+        // await sharp(fullPath)
+        //     .resize({ width: 1920, height: 1010 })
+        //     .toFile(imgPath);
+
+        // Ensure the resized image is fully processed
+        const metadata = await sharp(imgPath).metadata();
+        notify("[!] Debug : Resized image metadata:", metadata);
+
+        // Ensure extraction area is within image boundaries
+        const width = metadata.width;
+        const height = metadata.height;
+
+        const extractAreas = [
+            { left: 995, top: 117, width: 59, height: 29 },   // heading
+            { left: 203, top: 797, width: 86, height: 39 },   // destination
+            { left: 26, top: 565, width: 160, height: 50 },   // airspeed
+            { left: 23, top: 621, width: 161, height: 49 },   // altitude
+            { left: 20, top: 678, width: 166, height: 39 },   // vertical speed
+            { left: 21, top: 726, width: 173, height: 54 },   // fuel
+            { left: 184, top: 549, width: 81, height: 205 }   // throttle
+        ];
+
+        notify("[!] Debug : Splitting Screenshot");
+
+        for (let i = 0; i < extractAreas.length; i++) {
+            let { left, top, width: w, height: h } = extractAreas[i];
+
+            if (left + w > width || top + h > height) {
+                notify(`[!] Error : Extract area ${i} is out of bounds!`);
+                continue;
+            }
+
+            await sharp(imgPath)
+                .extract({ left, top, width: w, height: h })
+                .toFile(imgArrary[i]);
+        }
+
+        notify("[✔] Screenshot Processing Completed");
 
     } catch (err) {
-        notify("[!] Error : " + err.message);
-    }
-
-    try {
-        notify("[!] Debug : Spliting Screenshot");
-
-        // Extract flight data from screenshots
-        await sharp(imgPath).extract({ left: 990, top: 144, width: 59, height: 24 }).toFile(imgArrary[0]); // heading section
-        await sharp(imgPath).extract({ left: 196, top: 774, width: 73, height: 35 }).toFile(imgArrary[1]); // destination section
-        await sharp(imgPath).extract({ left: 1490, top: 621, width: 429, height: 137 }).toFile(imgArrary[2]); // flight section
-        await sharp(imgPath).extract({ left: 27, top: 544, width: 156, height: 51 }).toFile(imgArrary[3]); // airspeed section
-        await sharp(imgPath).extract({ left: 31, top: 597, width: 153, height: 52 }).toFile(imgArrary[4]); // altitude section
-        await sharp(imgPath).extract({ left: 28, top: 649, width: 157, height: 49 }).toFile(imgArrary[5]); // vertical speed section
-        await sharp(imgPath).extract({ left: 29, top: 702, width: 151, height: 50 }).toFile(imgArrary[6]); // fuel section
-        await sharp(imgPath).extract({ left: 184, top: 549, width: 81, height: 205 }).toFile(imgArrary[7]);  // throttle section
-    } catch (err) {
-        notify("[!] Error at Split : " + err);
+        notify("[!] Error : " + err);
     }
 }
+
+
 
 async function recongize(imgPath) {
     try {
@@ -69,10 +93,10 @@ async function readOCR(currentOCR) {
         // [1] outputs: 468
 
         const altitude = text.match(/ALTITUDE\n(.+) ft/);
-        // [0] outputs: 11400 ft
+        // [0] outputs: ALTITUDE\n11400 ft
         // [1] outputs: 11400
 
-        const destination = text.match(/DEST (.+)°/);
+        const destination = text.match(/EGOP (.+)°/);
         // [0] outputs: DEST 245°
         // [1] outputs: 245°
 
@@ -93,7 +117,7 @@ async function readOCR(currentOCR) {
         // [1] outputs: 176.81
 
         // In development
-        // const throttle = data.match(/AIRSPEED (.+)\%/);
+        // const throttle = match(/AIRSPEED (.+)\%/);
         // [0] outputs: 100%
         // [1] outputs: 100
 
@@ -130,7 +154,7 @@ async function writeOCR(data, imgArrary, currentOCR) {
 }
 
 async function run(currentOCR) {
-    let data = ""; // Saves the OCR data.
+    let data = ""; // Saves the OCR 
     try {
         notify("[!] Debug : Starting processor");
         // Capture screenshot
@@ -173,7 +197,7 @@ async function checkPlatform() {
     }
 }
 
-async function autopilot(data = (readOCR(path.resolve("./output/data/current.txt"))).data) {
+async function autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel) {
     let changes = ["ALL"] // Creates an variable for autopilot changes
 
     if (!Array.isArray(changes)) { // Checks if changes is an arrary
@@ -181,7 +205,7 @@ async function autopilot(data = (readOCR(path.resolve("./output/data/current.txt
         return; // returns if not
     }
 
-    const {
+    const { // Imports the settings from config/settings.js
         maxAirspeed,
         minAirspeed,
         
@@ -196,7 +220,7 @@ async function autopilot(data = (readOCR(path.resolve("./output/data/current.txt
 
         maxVerticalSpeed,
         minVerticalSpeed,
-    } = require('./config/settings')
+    } = require('./config/settings').settings;
 
     notify("[!] Main : Starting autopilot...");
 
@@ -207,7 +231,7 @@ async function autopilot(data = (readOCR(path.resolve("./output/data/current.txt
     
             if (heading < destination) { // If the heading is less than the destination
                 notify("[!] Autopilot : Turn right");
-                keySender.sendLetter("d"); // adjust to the right
+                keySender.sendKey("d"); // adjust to the right
 
                 changes.push("Heading") // Tells the computer, a change of the heading is being made
     
@@ -217,7 +241,7 @@ async function autopilot(data = (readOCR(path.resolve("./output/data/current.txt
             
             else if (heading > destination) { // If the heading is greater than the destination
                 notify("[!] Autopilot : Turn left");
-                keySender.sendLetter("a"); // adjust to the left
+                keySender.sendKey("a"); // adjust to the left
 
                 changes.push("Heading") // Tells the computer, a change of the heading is being made
     
@@ -229,13 +253,13 @@ async function autopilot(data = (readOCR(path.resolve("./output/data/current.txt
                 changes.pop("Heading") // Removes the heading tag
 
                 notify("[!] Autopilot : Correct Heading");
-                autopilot(); // Continues the function
+                return; // Returns to the main function
             }
         }
         
         else {
             notify("[!] Autopilot : Correct Heading");
-            autopilot(); // Continues the function
+            return; // Returns to the main function
         }
     }
 
@@ -243,7 +267,7 @@ async function autopilot(data = (readOCR(path.resolve("./output/data/current.txt
         notify("[!] Autopilot : Adjusting throttle");
         if (airspeed > maxAirspeed) { // If the airspeed is greater than the max airspeed
             notify("[!] Autopilot : Throttle down");
-            keySender.sendLetter("s"); // throttle down
+            keySender.sendKey("s"); // throttle down
 
             changes.push("Throttle") // Tells the computer that a current change of the throttle is being made
     
@@ -253,7 +277,7 @@ async function autopilot(data = (readOCR(path.resolve("./output/data/current.txt
         
         else if (airspeed < minAirspeed) { // If the airspeed is less than the min airspeed
             notify("[!] Autopilot : Throttle up");
-            keySender.sendLetter("w"); // throttle up
+            keySender.sendKey("w"); // throttle up
 
             changes.push("Throttle") // Tells the computer that a current change of the throttle is being made
     
@@ -273,7 +297,7 @@ async function autopilot(data = (readOCR(path.resolve("./output/data/current.txt
         notify("[!] Autopilot : Adjusting altitude");
         if (altitude > maxAltitude) { // If the altitude is greater than the max altitude
             notify("[!] Autopilot : Descend");
-            keySender.sendLetter("u"); // descend
+            keySender.sendKey("u"); // descend
 
             changes.push("Altitude") // Tells the computer, a current change of altitude is being made
     
@@ -283,7 +307,7 @@ async function autopilot(data = (readOCR(path.resolve("./output/data/current.txt
         
         else if (altitude < minAltitude) { // If the altitude is less than the min altitude
             notify("[!] Autopilot : Climb");
-            keySender.sendLetter("j"); // climb
+            keySender.sendKey("j"); // climb
 
             changes.push("Altitude") // Tells the computer, a current change of altitude is being made
     
@@ -349,7 +373,7 @@ async function autopilot(data = (readOCR(path.resolve("./output/data/current.txt
             }
         } else {
             await run(); // Reprocesses the data
-            autopilot(); // Reruns the function
+            return; // Returns to the main function
         }
     }
 
@@ -377,16 +401,16 @@ async function autopilot(data = (readOCR(path.resolve("./output/data/current.txt
 
     async function settings(run) {
         if (run === "Throttle") {
-            if (useAirspeed) { // Uses airspeed as an indicator to adjust the throttle.
-                await adjustAirspeed(data.airspeed, maxAirspeed, minAirspeed, changes);
+            if (useAirspeed === true) { // Uses airspeed as an indicator to adjust the throttle.
+                await adjustAirspeed(airspeed, maxAirspeed, minAirspeed, changes);
             }
             // If the user disables it, outputs an error.
             else notify("[!] Autopilot failed to run : Airspeed is the only option ATM")
         }
 
         else if (run === "Heading") {
-            if (useFlightPlan) { // Adjusts heading based on flight plan in-game
-                await adjustHeading(data.heading, data.destination, changes);
+            if (useFlightPlan === true) { // Adjusts heading based on flight plan in-game
+                await adjustHeading(heading, destination, changes);
             }
             // If the user disables this, outputs an error.
             else notify("[!] Autopilot failed to run : Following the in-game flight plan is the only option ATM")
@@ -400,6 +424,7 @@ async function autopilot(data = (readOCR(path.resolve("./output/data/current.txt
 
     async function controlAircraft(changes) {
         changes.forEach(async (values) => {
+            new Promise(resolve => setTimeout(resolve, 1000));
             switch (values) {
                 case "Heading":
                     await settings(values)
@@ -410,11 +435,11 @@ async function autopilot(data = (readOCR(path.resolve("./output/data/current.txt
                     break;
 
                 case "Altitude":
-                    await adjustAltitude(data.altitude, maxAltitude, minAltitude, changes)
+                    await adjustAltitude(altitude, maxAltitude, minAltitude, changes)
                     break;
 
                 case "Angle":
-                    await adjustAngle(data.verticalspeed, maxVerticalSpeed, minVerticalSpeed, changes)
+                    await adjustAngle(verticalspeed, maxVerticalSpeed, minVerticalSpeed, changes)
                     break;
 
                 case "ALL": 
@@ -422,8 +447,8 @@ async function autopilot(data = (readOCR(path.resolve("./output/data/current.txt
                     await settings("Throttle") // Adjusts systems based on user settings.
                     
                     // ESSENTIAL system functions.
-                    await adjustAltitude(data.altitude, maxAltitude, minAltitude, changes);
-                    await adjustAngle(data.verticalspeed, maxVerticalSpeed, minVerticalSpeed, changes);
+                    await adjustAltitude(altitude, maxAltitude, minAltitude, changes);
+                    await adjustAngle(verticalspeed, maxVerticalSpeed, minVerticalSpeed, changes);
 
                 default:
                     notify("[!] main.error: critical error, in the application. Exiting.")
@@ -434,8 +459,8 @@ async function autopilot(data = (readOCR(path.resolve("./output/data/current.txt
 
     async function main() {
         await controlAircraft(changes); // Controls the aircraft.
-        await alertPilotOfLanding(data.distance, maxDistance, minDistance); // Alerts pilot when close to the destination
-        await alertPilotOfSystemInfo(data.fuel); // Alerts pilot when critical systems are not functioning correctly.
+        await alertPilotOfLanding(distance, maxDistance, minDistance); // Alerts pilot when close to the destination
+        await alertPilotOfSystemInfo(fuel); // Alerts pilot when critical systems are not functioning correctly.
     }
 
     await main(); // Runs the main function
@@ -466,11 +491,12 @@ async function main() {
         const currentOCR = path.resolve(__dirname, './output/data/current.txt'); // Current OCR data
 
         await run(currentOCR); // Processes the image capture, image cropping, image recongition, and flight information.
-        const data = (await readOCR(currentOCR)).data; // Reads the current OCR data
+        const { airspeed, altitude, destination, heading, fuel, verticalspeed, distance } = (await readOCR(currentOCR)).data; // Reads the current OCR data
         
-        autopilot(data); // Starts the autopilot function.        
+        autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel); // Starts the autopilot function.        
     } catch (err) {
         notify("[!] Error at Main : " + err);
+        // main();
     }
 }
 // Runs the main application function.
