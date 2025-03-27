@@ -22,7 +22,7 @@ async function capture(imgPath, imgArrary) {
         const fullPath = "./output/screen_full.png";
 
         notify("[!] Debug : Taking Screenshot");
-        await screenshot({ filename: imgPath });
+        // await screenshot({ filename: imgPath });
 
         // Resize first and save to imgPath
         // await sharp(fullPath)
