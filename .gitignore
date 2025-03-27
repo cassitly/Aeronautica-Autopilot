@@ -1,0 +1,4 @@
+node_modules
+output
+eng.traineddata
+package-lock.json
