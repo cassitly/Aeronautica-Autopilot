@@ -1,13 +1,13 @@
 {
   "name": "aeronautica-autopilot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Autopilot Systems for Aeronautica",
   "main": "Aeronautica.js",
   "scripts": {
     "start": "node Aeronautica.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Cassitly",
   "license": "MIT",
   "type": "commonjs",
   "dependencies": {
