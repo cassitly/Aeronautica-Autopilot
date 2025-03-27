@@ -1,0 +1,22 @@
+{
+  "name": "aeronautica-autopilot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Aeronautica.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "date-and-time": "^3.6.0",
+    "fs": "^0.0.1-security",
+    "node-key-sender": "^1.0.11",
+    "path": "^0.12.7",
+    "screenshot-desktop": "^1.15.1",
+    "sharp": "^0.33.5",
+    "tesseract.js": "^6.0.0"
+  }
+}
