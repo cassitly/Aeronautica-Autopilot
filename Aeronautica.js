@@ -21,154 +21,92 @@ function notify(...msg) {
 
 class Server {
     constructor() {        
-        // Generate a pair of RSA keys for this app (private key never leaves the app)
+        // Generate a pair of RSA keys
         this.keys = crypto.generateKeyPairSync("rsa", {
             modulusLength: 2048,
             publicKeyEncoding: { type: "spki", format: "pem" },
             privateKeyEncoding: { type: "pkcs8", format: "pem" }
         });
 
-        // Application data
         this.appId = "cassitly.io/api:Aeronautica-Autopilot";
         this.appName = "api:request/app[Aeronautica-Autpilot]";
-        this.contentType = 'application/json'; // Content Type
+        this.contentType = 'application/json';
+        this.apiURL = "https://cassityapi.vercel.app/";
 
-        this.apiURL = "https://cassityapi.vercel.app/" // API URL
-        
-        // Store the app's public key (to send to the API)
         this.publicKey = this.keys.publicKey;
         this.privateKey = this.keys.privateKey;
-
-        this.api = { publicKey: "", apiKey: "" }; // Stores the API's key
+        this.api = { publicKey: "", apiKey: "" };
     }
 
-    // Encrypt the message with the server's public key
-    encrypt(public_key, message) {
-        // Format the received public key
-        const formattedPublicKey = `-----BEGIN PUBLIC KEY-----\n${public_key}\n-----END PUBLIC KEY-----`;
-
-        // Encrypt the message using the API's public key
-        const encryptedMessage = crypto.publicEncrypt(
+    encrypt(publicKey, message) {
+        // Ensure the key is properly formatted
+        if (!publicKey.includes("BEGIN PUBLIC KEY")) {
+            publicKey = `-----BEGIN PUBLIC KEY-----\n${publicKey}\n-----END PUBLIC KEY-----`;
+        }
+    
+        const buffer = Buffer.from(message, "utf-8");
+        return crypto.publicEncrypt(
             {
-                key: formattedPublicKey,
-                padding: this.crypto.constants.RSA_PKCS1_OAEP_PADDING,
-            },
-            Buffer.from(message)
-        );
-
-        return encryptedMessage.toString("base64");
-    }
-
-    // Decrypt the response using the app's private key
-    decrypt(encrypted_message) {
-        const formattedPrivateKey = `-----BEGIN PRIVATE KEY-----\n${this.privateKey}\n-----END PRIVATE KEY-----`;
-
-        // Decrypt the response from the API using the private key
-        const buffer = Buffer.from(encrypted_message, "base64");
-        const decryptedMessage = crypto.privateDecrypt(
-            {
-                key: formattedPrivateKey,
-                padding: this.crypto.constants.RSA_PKCS1_OAEP_PADDING,
+                key: publicKey,
+                padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
             },
             buffer
-        );
-
-        return decryptedMessage.toString("utf-8");
+        ).toString("base64");
     }
+    
 
-    // Get the app's public key
-    getPublicKey() {
-        return this.publicKey;
-    }
-
-    // Get the app's private key
-    getPrivateKey() {
-        return this.privateKey;
+    decrypt(encryptedMessage) {
+        const buffer = Buffer.from(encryptedMessage, "base64");
+        return crypto.privateDecrypt(
+            {
+                key: this.privateKey,
+                padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
+            },
+            buffer
+        ).toString("utf-8");
     }
 
     async auth() {
         try {
-            const response = await axios.post(this.apiURL + 'api/public-key', {
+            // Convert the public key to Base64
+            const base64PublicKey = Buffer.from(this.publicKey).toString('base64');
+    
+            const response = await axios.post(this.apiURL + 'api/public-key', {}, {
+                method: 'POST',
                 headers: {
                     'Content-Type': this.contentType,
                     'application-id': this.appId, 
                     'application-name': this.appName,
                     'request-id': "request:data/send[public-key]",
-                    'request-content': this.publicKey  // Additional headers if needed
+                    'request-content': base64PublicKey  // Fix: Send Base64 instead of raw PEM
                 }
             });
 
-            this.api.publicKey = response.data.publicKey; // Store the API's public key
+            if (response.data.ok) {
+                notify("[!] API : Authenticated");
+            }
+    
+            this.api.publicKey = response.data.publicKey;
         } catch (error) {
-            notify("[!] API errorred with message : Error communicating with the API\n", error);
-        }
-
-        try {
-            // Encrypt the request data
-            const requestAPIKey = this.encrypt(this.api.publicKey, "API_KEY");
-
-            // Send encrypted data to the API
-            const response = await axios.post(this.apiURL + 'request', {
-                encrypted: requestAPIKey
-            }, {
-                headers: {
-                    'Content-Type': this.contentType,
-                    'application-id': this.appId, 
-                    'application-name': this.appName,
-                }
-            });
-
-            // Decrypt the API response using your private key
-            this.api.apiKey = this.decrypt(response.data.encrypted);
-        } catch (error) {
-            notify("[!] API errored with message : Error communicating with the API\n", error);
+            notify("[!] API error: " + error);
         }
     }
+    
 
     async sendData() {
         const { shareAnonymous } = require('./config/settings.js').settings;
+        if (!shareAnonymous) return;
 
-        if (shareAnonymous) {
-            try {
-                // Encrypt the request data
-                const encryptedMessage = this.encrypt(this.api.publicKey, "SHARE_DATA");
-    
-                // Send encrypted data to the API
-                const response = await axios.post(this.apiURL + 'request', {
-                    encrypted: encryptedMessage,
-                    data: {
-                        OCR: fs.readFileSync('./output/data/current.txt', 'utf-8'),
-                        logs: fs.readFileSync('./output/data/logs.txt', 'utf-8')
-                    }
-                }, {
-                    headers: {
-                        'Content-Type': this.contentType,
-                        'application-id': this.appId, 
-                        'application-name': this.appName,
-                        'x-api-key': this.api.apiKey,
-                    }
-                });
-    
-                // Decrypt the API response using your private key
-                const data = this.decrypt(response.data.encrypted);
-                if (data.return.code !== "SUCCESS") {
-                    notify("[!] API errored with message : " + data.error);
-                }
-            } catch (error) {
-                notify("[!] API errored with message : Error communicating with the API\n", error);
-            }
-        }
-    }
-
-    async getConfig() {
         try {
-            // Encrypt the request data
-            const encryptedMessage = this.encrypt(this.api.publicKey, "GET_CONFIG");
-
-            // Send encrypted data to the API
-            const response = await axios.get(this.apiURL + 'api/request', {
-                encrypted: encryptedMessage
+            const encryptedMessage = this.encrypt(this.api.publicKey, "SHARE_DATA");
+            const response = await axios.post(this.apiURL + 'api/request', {
+                encrypted: encryptedMessage,
+                data: {
+                    OCR: fs.readFileSync('./output/data/current.txt', 'utf-8'),
+                    logs: fs.readFileSync('./output/data/logs.txt', 'utf-8')
+                }
             }, {
+                method: 'POST',
                 headers: {
                     'Content-Type': this.contentType,
                     'application-id': this.appId, 
@@ -177,9 +115,34 @@ class Server {
                 }
             });
 
-            return response.config
+            const data = JSON.parse(this.decrypt(response.data.encrypted));
+            if (data.return.code !== "SUCCESS") {
+                notify("[!] API error:" + data.error);
+            } else {
+                notify("[!] API : Data sent");
+            }
         } catch (error) {
-            notify("[!] API errored with message : Error communicating with the API\n", error);
+            notify("[!] API error: " + error);
+        }
+    }
+
+    async getConfig() {
+        try {
+            const encryptedMessage = this.encrypt(this.api.publicKey, "GET_CONFIG");
+            const response = await axios.get(this.apiURL + 'api/request', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': this.contentType,
+                    'application-id': this.appId, 
+                    'application-name': this.appName,
+                    'x-api-key': this.api.apiKey,
+                    'encrypted': encryptedMessage
+                }
+            });
+
+            return response.data.config;
+        } catch (error) {
+            notify("[!] API error: " + error);
         }
     }
 }
@@ -341,7 +304,7 @@ async function checkPlatform() {
     if (platform === 'win32') {
         exec('taskkill /F /IM RobloxPlayerBeta.exe', (err, stdout, stderr) => {
             if (err) {
-            console.error('Error:', err);
+            notify('Error:', err);
             return;
             }
             console.log('Roblox task ended:', stdout);
@@ -349,7 +312,7 @@ async function checkPlatform() {
     } else if (platform === 'darwin' || platform === 'linux') {
         exec('killall Roblox', (err, stdout, stderr) => {
             if (err) {
-            console.error('Error:', err);
+            notify('Error:', err);
             return;
             }
             console.log('Roblox task ended:', stdout);
@@ -688,17 +651,19 @@ async function main() {
 
         await initialize(server); // Initializes the app, for the first time, and creates the folders required.
 
-        const currentOCR = path.resolve(__dirname, './output/data/current.txt'); // Current OCR data
+        // const currentOCR = path.resolve(__dirname, './output/data/current.txt'); // Current OCR data
 
-        await run(currentOCR); // Processes the image capture, image cropping, image recongition, and flight information.
-        const { airspeed, altitude, destination, heading, fuel, verticalspeed, distance } = (await readOCR(currentOCR)).data; // Reads the current OCR data
+        // await run(currentOCR); // Processes the image capture, image cropping, image recongition, and flight information.
+        // const { airspeed, altitude, destination, heading, fuel, verticalspeed, distance } = (await readOCR(currentOCR)).data; // Reads the current OCR data
         
-        autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel); // Starts the autopilot function.
+        // autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel); // Starts the autopilot function.
     }
 
     const { imageLatency } = require('./config/settings').settings; // Reads the image latency setting
 
-    setInterval(createInstance, imageLatency);
+    createInstance();
+
+    // setInterval(createInstance, imageLatency);
 }
 // Runs the main application function.
 setTimeout(main, 5000)
