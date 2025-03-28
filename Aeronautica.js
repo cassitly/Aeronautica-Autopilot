@@ -28,11 +28,12 @@ class Server {
             privateKeyEncoding: { type: "pkcs8", format: "pem" }
         });
 
+        // Application data
         this.appId = "cassitly.io/api:Aeronautica-Autopilot";
         this.appName = "api:request/app[Aeronautica-Autpilot]";
-        this.contentType = 'application/json';
+        this.contentType = 'application/json'; // Content Type
 
-        this.apiURL = ""
+        this.apiURL = "https://cassityapi.vercel.app/" // API URL
         
         // Store the app's public key (to send to the API)
         this.publicKey = this.keys.publicKey;
@@ -47,7 +48,7 @@ class Server {
         const formattedPublicKey = `-----BEGIN PUBLIC KEY-----\n${public_key}\n-----END PUBLIC KEY-----`;
 
         // Encrypt the message using the API's public key
-        const encryptedMessage = this.crypto.publicEncrypt(
+        const encryptedMessage = crypto.publicEncrypt(
             {
                 key: formattedPublicKey,
                 padding: this.crypto.constants.RSA_PKCS1_OAEP_PADDING,
@@ -64,7 +65,7 @@ class Server {
 
         // Decrypt the response from the API using the private key
         const buffer = Buffer.from(encrypted_message, "base64");
-        const decryptedMessage = this.crypto.privateDecrypt(
+        const decryptedMessage = crypto.privateDecrypt(
             {
                 key: formattedPrivateKey,
                 padding: this.crypto.constants.RSA_PKCS1_OAEP_PADDING,
@@ -122,22 +123,51 @@ class Server {
         } catch (error) {
             notify("[!] API errored with message : Error communicating with the API\n", error);
         }
-
-        
     }
 
     async sendData() {
+        const { shareAnonymous } = require('./config/settings.js').settings;
+
+        if (shareAnonymous) {
+            try {
+                // Encrypt the request data
+                const encryptedMessage = this.encrypt(this.api.publicKey, "SHARE_DATA");
+    
+                // Send encrypted data to the API
+                const response = await axios.post(this.apiURL + 'request', {
+                    encrypted: encryptedMessage,
+                    data: {
+                        OCR: fs.readFileSync('./output/data/current.txt', 'utf-8'),
+                        logs: fs.readFileSync('./output/data/logs.txt', 'utf-8')
+                    }
+                }, {
+                    headers: {
+                        'Content-Type': this.contentType,
+                        'application-id': this.appId, 
+                        'application-name': this.appName,
+                        'x-api-key': this.api.apiKey,
+                    }
+                });
+    
+                // Decrypt the API response using your private key
+                const data = this.decrypt(response.data.encrypted);
+                if (data.return.code !== "SUCCESS") {
+                    notify("[!] API errored with message : " + data.error);
+                }
+            } catch (error) {
+                notify("[!] API errored with message : Error communicating with the API\n", error);
+            }
+        }
+    }
+
+    async getConfig() {
         try {
             // Encrypt the request data
-            const encryptedMessage = this.encrypt(this.api.publicKey, "SHARE_DATA");
+            const encryptedMessage = this.encrypt(this.api.publicKey, "GET_CONFIG");
 
             // Send encrypted data to the API
-            const response = await axios.post(this.apiURL + 'request', {
-                encrypted: encryptedMessage,
-                data: {
-                    OCR: fs.readFileSync('./output/data/current.txt', 'utf-8'),
-                    logs: fs.readFileSync('./output/data/logs.txt', 'utf-8')
-                }
+            const response = await axios.get(this.apiURL + 'api/request', {
+                encrypted: encryptedMessage
             }, {
                 headers: {
                     'Content-Type': this.contentType,
@@ -147,11 +177,7 @@ class Server {
                 }
             });
 
-            // Decrypt the API response using your private key
-            const data = this.decrypt(response.data.encrypted);
-            if (data.return.code !== "SUCCESS") {
-                notify("[!] API errored with message : " + data.error);
-            }
+            return response.config
         } catch (error) {
             notify("[!] API errored with message : Error communicating with the API\n", error);
         }
@@ -608,7 +634,7 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
 }
 
 async function main() {
-    async function initialize() {
+    async function initialize(server) {
         const folders = [ // Creates an arrary of required folders.
             path.resolve(__dirname, './output/'),
             path.resolve(__dirname, './output/data/'),
@@ -620,37 +646,49 @@ async function main() {
             path.resolve(__dirname, './config/settings.js')
         ]
 
-        const contents = {
-            settings: ""
-        }
+        const contents = [ "" ]
 
         notify("[!] Initialize : Creating folders");
         for (const folder of folders) {
-            try { // Writes folder, if it doesn't exist.
-                notify("[!] Initialize : Writing folder, " + folder)
-                await fsPromises.mkdir(folder, { recursive: true });
-            } catch (err) { // If error isn't saying that a folder already exists, throw that error.
-                if (err.code !== 'EEXIST') {
-                    throw err; // This throws the error.
+            if (!fs.existsSync(path.resolve(folder))) {
+                try { // Writes folder, if it doesn't exist.
+                    notify("[!] Initialize : Writing folder, " + folder)
+                    await fsPromises.mkdir(folder, { recursive: true });
+                } catch (err) { // If error isn't saying that a folder already exists, throw that error.
+                    if (err.code !== 'EEXIST') {
+                        throw err; // This throws the error.
+                    }
                 }
             }
         }
 
         notify("[!] Initialize : Creating files");
         for (const file of files) {
-            try { // Writes file, if it doesn't exist.
-                notify("[!] Initialize : Writing file, " + file)
-                await fsPromises.writeFile(file, '');
-            } catch (err) { // If error isn't saying that a file already exists, throw that error.
-                if (err.code !== 'EEXIST') {
-                    throw err; // This throws the error.
+            if (!fs.existsSync(path.resolve(file))) {
+                try { // Writes file, if it doesn't exist.
+                    notify("[!] Initialize : Writing file, " + file)
+                    await fsPromises.writeFile(file, contents[0]);
+                } catch (err) { // If error isn't saying that a file already exists, throw that error.
+                    if (err.code !== 'EEXIST') {
+                        throw err; // This throws the error.
+                    }
                 }
             }
         }
     }
 
+    const server = new Server();
+
     async function createInstance() {
-        await initialize(); // Initializes the app, for the first time, and creates the folders required.
+        notify("[!] Main : Authenticating...");
+
+        await server.auth() // Authenticates the Application into the API
+
+        notify("[!] Main : Starting the application...");
+
+        await server.sendData() // If the user allows data, to be sent to the API anoymously, this function sends it
+
+        await initialize(server); // Initializes the app, for the first time, and creates the folders required.
 
         const currentOCR = path.resolve(__dirname, './output/data/current.txt'); // Current OCR data
 
