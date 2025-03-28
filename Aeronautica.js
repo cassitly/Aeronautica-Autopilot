@@ -186,8 +186,6 @@ class Server {
 
 async function capture(imgPath, imgArrary) {
     try {
-        const fullPath = "./output/screen_full.png";
-
         notify("[!] Debug : Taking Screenshot");
         // await screenshot({ filename: imgPath });
 
@@ -646,7 +644,7 @@ async function main() {
             path.resolve(__dirname, './config/settings.js')
         ]
 
-        const contents = [ "" ]
+        const contents = [ server.getConfig() ]
 
         notify("[!] Initialize : Creating folders");
         for (const folder of folders) {
