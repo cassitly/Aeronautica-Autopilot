@@ -31,7 +31,7 @@ class Server {
         this.appId = "cassitly.io/api:Aeronautica-Autopilot";
         this.appName = "api:request/app[Aeronautica-Autpilot]";
         this.contentType = 'application/json';
-        this.apiURL = "https://cassityapi.vercel.app/";
+        this.apiURL = "https://preview-cassityapi.vercel.app/";
 
         this.publicKey = this.keys.publicKey;
         this.privateKey = this.keys.privateKey;
