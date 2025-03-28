@@ -2,19 +2,160 @@ const Tesseract = require('tesseract.js');
 const screenshot = require('screenshot-desktop');
 const keySender = require('node-key-sender');
 const { format } = require('date-and-time');
-const Readline = require('node:readline')
 const { exec } = require('child_process');
 const os = require('os');
 const fs = require('fs');
 const fsPromises = require('fs/promises')
 const path = require('path')
 const sharp = require('sharp');
+const crypto = require('crypto');
+const axios = require('axios');
 
 function notify(...msg) {
     console.log(`${msg}`); // Print to console
     const date = format(new Date(), 'DD-MM-YYYY'); // Get current date and time
     const time = format(new Date(), 'HH:mm:ss');
     fs.appendFileSync(path.resolve(__dirname, './output/logs/log-' + date + '.log'), `(${time}): ${msg}\n`);
+    fs.appendFileSync(path.resolve(__dirname, './output/data/logs.txt'), `(${time}): ${msg}\n`);
+}
+
+class Server {
+    constructor() {        
+        // Generate a pair of RSA keys for this app (private key never leaves the app)
+        this.keys = crypto.generateKeyPairSync("rsa", {
+            modulusLength: 2048,
+            publicKeyEncoding: { type: "spki", format: "pem" },
+            privateKeyEncoding: { type: "pkcs8", format: "pem" }
+        });
+
+        this.appId = "cassitly.io/api:Aeronautica-Autopilot";
+        this.appName = "api:request/app[Aeronautica-Autpilot]";
+        this.contentType = 'application/json';
+
+        this.apiURL = ""
+        
+        // Store the app's public key (to send to the API)
+        this.publicKey = this.keys.publicKey;
+        this.privateKey = this.keys.privateKey;
+
+        this.api = { publicKey: "", apiKey: "" }; // Stores the API's key
+    }
+
+    // Encrypt the message with the server's public key
+    encrypt(public_key, message) {
+        // Format the received public key
+        const formattedPublicKey = `-----BEGIN PUBLIC KEY-----\n${public_key}\n-----END PUBLIC KEY-----`;
+
+        // Encrypt the message using the API's public key
+        const encryptedMessage = this.crypto.publicEncrypt(
+            {
+                key: formattedPublicKey,
+                padding: this.crypto.constants.RSA_PKCS1_OAEP_PADDING,
+            },
+            Buffer.from(message)
+        );
+
+        return encryptedMessage.toString("base64");
+    }
+
+    // Decrypt the response using the app's private key
+    decrypt(encrypted_message) {
+        const formattedPrivateKey = `-----BEGIN PRIVATE KEY-----\n${this.privateKey}\n-----END PRIVATE KEY-----`;
+
+        // Decrypt the response from the API using the private key
+        const buffer = Buffer.from(encrypted_message, "base64");
+        const decryptedMessage = this.crypto.privateDecrypt(
+            {
+                key: formattedPrivateKey,
+                padding: this.crypto.constants.RSA_PKCS1_OAEP_PADDING,
+            },
+            buffer
+        );
+
+        return decryptedMessage.toString("utf-8");
+    }
+
+    // Get the app's public key
+    getPublicKey() {
+        return this.publicKey;
+    }
+
+    // Get the app's private key
+    getPrivateKey() {
+        return this.privateKey;
+    }
+
+    async auth() {
+        try {
+            const response = await axios.post(this.apiURL + 'api/public-key', {
+                headers: {
+                    'Content-Type': this.contentType,
+                    'application-id': this.appId, 
+                    'application-name': this.appName,
+                    'request-id': "request:data/send[public-key]",
+                    'request-content': this.publicKey  // Additional headers if needed
+                }
+            });
+
+            this.api.publicKey = response.data.publicKey; // Store the API's public key
+        } catch (error) {
+            notify("[!] API errorred with message : Error communicating with the API\n", error);
+        }
+
+        try {
+            // Encrypt the request data
+            const requestAPIKey = this.encrypt(this.api.publicKey, "API_KEY");
+
+            // Send encrypted data to the API
+            const response = await axios.post(this.apiURL + 'request', {
+                encrypted: requestAPIKey
+            }, {
+                headers: {
+                    'Content-Type': this.contentType,
+                    'application-id': this.appId, 
+                    'application-name': this.appName,
+                }
+            });
+
+            // Decrypt the API response using your private key
+            this.api.apiKey = this.decrypt(response.data.encrypted);
+        } catch (error) {
+            notify("[!] API errored with message : Error communicating with the API\n", error);
+        }
+
+        
+    }
+
+    async sendData() {
+        try {
+            // Encrypt the request data
+            const encryptedMessage = this.encrypt(this.api.publicKey, "SHARE_DATA");
+
+            // Send encrypted data to the API
+            const response = await axios.post(this.apiURL + 'request', {
+                encrypted: encryptedMessage,
+                data: {
+                    OCR: fs.readFileSync('./output/data/current.txt', 'utf-8'),
+                    logs: fs.readFileSync('./output/data/logs.txt', 'utf-8')
+                }
+            }, {
+                headers: {
+                    'Content-Type': this.contentType,
+                    'application-id': this.appId, 
+                    'application-name': this.appName,
+                    'x-api-key': this.api.apiKey,
+                }
+            });
+
+            // Decrypt the API response using your private key
+            const data = this.decrypt(response.data.encrypted);
+            if (data.return.code !== "SUCCESS") {
+                notify("[!] API errored with message : " + data.error);
+            }
+        } catch (error) {
+            notify("[!] API errored with message : Error communicating with the API\n", error);
+        }
+    }
 }
 
 async function capture(imgPath, imgArrary) {
@@ -83,20 +224,37 @@ async function recongize(imgPath) {
     }
 }
 
+async function writeOCR(imgArrary, currentOCR) {
+    try {
+        notify("[!] Debug : Writing OCR");
+        if (fs.readFileSync(currentOCR, 'utf8').length !== 0) {
+            fs.writeFileSync(currentOCR, ""); // Clears the current OCR data
+        } // If the current OCR has data, clear it.
+
+        for (const img of imgArrary) // For each image in the arrary
+
+        { let data = await recongize(img); // Wait for OCR recognition on each image          
+            fs.appendFileSync(currentOCR, data); // Append data to file
+        } // Writes data to file
+    } catch (err) {
+        notify("[!] Error at Write : " + err);
+    }
+}
+
 async function readOCR(currentOCR) {
     notify("[!] Debug : Reading OCR");
         const text = fs.readFileSync(currentOCR, 'utf-8'); // Reads the current OCR data
     
         // Extract flight data from text
-        const airspeed = text.match(/(.+) Knots \[(.+)\]/);
-        // [0] outputs: 468 Knots [476 GS]
+        const airspeed = text.match(/AIRSPEED\n(.+)/);
+        // [0] outputs: AIRSPEED\n468
         // [1] outputs: 468
 
-        const altitude = text.match(/ALTITUDE\n(.+) ft/);
-        // [0] outputs: ALTITUDE\n11400 ft
+        const altitude = text.match(/ALTITUDE\n(.+)/);
+        // [0] outputs: ALTITUDE\n11400
         // [1] outputs: 11400
 
-        const destination = text.match(/EGOP (.+)°/);
+        const destination = text.match(/(.+)°/);
         // [0] outputs: DEST 245°
         // [1] outputs: 245°
 
@@ -112,7 +270,7 @@ async function readOCR(currentOCR) {
         // [0] outputs: VERTICAL SPEED\n56.8 ft/m
         // [1] outputs: 56.8
 
-        const distance = text.match(/Distance: (.+) nm/);
+        const distance = text.match(/(.+) nm/);
         // [0] outputs: Distance: 176.81 nm
         // [1] outputs: 176.81
 
@@ -134,40 +292,20 @@ async function readOCR(currentOCR) {
         }
 }
 
-async function writeOCR(data, imgArrary, currentOCR) {
-    try {
-        notify("[!] Debug : Writing OCR");
-        if (fs.readFileSync(currentOCR, 'utf8').length !== 0) {
-            fs.writeFileSync(currentOCR, ""); // Clears the current OCR data
-        } // If the current OCR has data, clear it.
-
-        for (const img of imgArrary) // For each image in the arrary
-
-        { data += await recongize(img); // Wait for OCR recognition on each image
-          fs.appendFileSync(currentOCR, data); // Append data to file
-        } // Writes data to file
-        
-        data = ""; // Clears the data
-    } catch (err) {
-        notify("[!] Error at Write : " + err);
-    }
-}
-
 async function run(currentOCR) {
-    let data = ""; // Saves the OCR 
     try {
         notify("[!] Debug : Starting processor");
         // Capture screenshot
         const imgPath = path.resolve(__dirname, './output/screenshot.png'); // Creates a variable path to the screenshot
         const imgArrary = [ // Arrary of image paths, that were spilt.
             './output/heading_section.png', './output/destination_section.png',
-            './output/flight_section.png', './output/airspeed_section.png',
+            './output/airspeed_section.png',
             './output/altitude_section.png', './output/vertical_speed_section.png',
             './output/fuel_section.png', './output/throttle_section.png'
         ]
         await capture(imgPath, imgArrary); // Captures the image and extracts data from it.
 
-        await writeOCR(data, imgArrary, currentOCR); // Recongize the extracted data and write to file        
+        await writeOCR(imgArrary, currentOCR); // Recongize the extracted data and write to file        
     } catch (error) {
         notify("[!] Error at processing : " + error.code + "\n" + error.message);
     }
@@ -222,8 +360,6 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
         minVerticalSpeed,
     } = require('./config/settings').settings;
 
-    notify("[!] Main : Starting autopilot...");
-
     async function adjustHeading(heading, destination, changes) {
         notify("[!] Autopilot : Adjusting heading");
         if (heading !== destination) { // If the heading is not the same as the destination
@@ -231,22 +367,22 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
     
             if (heading < destination) { // If the heading is less than the destination
                 notify("[!] Autopilot : Turn right");
-                keySender.sendKey("d"); // adjust to the right
+                await keySender.sendKey("d"); // adjust to the right
 
                 changes.push("Heading") // Tells the computer, a change of the heading is being made
     
                 await run(); // Reprocesses the data
-                adjustHeading(); // Runs the function again
+                return;
             }
             
             else if (heading > destination) { // If the heading is greater than the destination
                 notify("[!] Autopilot : Turn left");
-                keySender.sendKey("a"); // adjust to the left
+                await keySender.sendKey("a"); // adjust to the left
 
                 changes.push("Heading") // Tells the computer, a change of the heading is being made
     
                 await run(); // Reprocesses the data
-                adjustHeading(); // Runs the function again
+                return;
             }
 
             else {
@@ -267,29 +403,29 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
         notify("[!] Autopilot : Adjusting throttle");
         if (airspeed > maxAirspeed) { // If the airspeed is greater than the max airspeed
             notify("[!] Autopilot : Throttle down");
-            keySender.sendKey("s"); // throttle down
+            await keySender.sendKey("s"); // throttle down
 
             changes.push("Throttle") // Tells the computer that a current change of the throttle is being made
     
             await run(); // Reprocesses the data
-            adjustAirspeed(); // Runs the function again
+            return;
         }
         
         else if (airspeed < minAirspeed) { // If the airspeed is less than the min airspeed
             notify("[!] Autopilot : Throttle up");
-            keySender.sendKey("w"); // throttle up
+            await keySender.sendKey("w"); // throttle up
 
             changes.push("Throttle") // Tells the computer that a current change of the throttle is being made
     
             await run(); // Reprocesses the data
-            adjustAirspeed(); // Runs the function again
+            return;
         }
 
         else {
             changes.pop("Throttle") // Removes the throttle tag
 
             notify("[!] Autopilot : Correct Throttle");
-            autopilot(); // Continues the function
+            return;
         }
     }
 
@@ -297,29 +433,29 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
         notify("[!] Autopilot : Adjusting altitude");
         if (altitude > maxAltitude) { // If the altitude is greater than the max altitude
             notify("[!] Autopilot : Descend");
-            keySender.sendKey("u"); // descend
+            await keySender.sendKey("u"); // descend
 
             changes.push("Altitude") // Tells the computer, a current change of altitude is being made
     
             await run(); // Reprocesses the data
-            adjustAltitude(); // Runs the function again
+            return;
         }
         
         else if (altitude < minAltitude) { // If the altitude is less than the min altitude
             notify("[!] Autopilot : Climb");
-            keySender.sendKey("j"); // climb
+            await keySender.sendKey("j"); // climb
 
             changes.push("Altitude") // Tells the computer, a current change of altitude is being made
     
             await run(); // Reprocesses the data
-            adjustAltitude(); // Runs the function again
+            return;
         }
 
         else {
             changes.pop("Altitude") // Removes the altitude tag
 
             notify("[!] Autopilot : Correct Altitude");
-            autopilot(); // Continues the function
+            return;
         }
     }
 
@@ -327,29 +463,29 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
         notify("[!] Autopilot : Adjusting angle");
         if (verticalspeed > maxVerticalSpeed) {
             notify("[!] Autopilot : Level out aircraft");
-            keySender.sendKey('='); // Increase angle
+            await keySender.sendKey('='); // Increase angle
 
             changes.push("Angle"); // Tells the computer, that a current change of the angle is being made
 
             await run(); // Reprocesses the data
-            adjustAngle(); // Runs the function again
+            return;
         }
 
         else if (verticalspeed < minVerticalSpeed) {
             notify("[!] Autopilot : Level out aircraft");
-            keySender.sendKey('='); // Decrease angle
+            await keySender.sendKey('='); // Decrease angle
             
             changes.push("Angle"); // Tells the computer, that a current change is being made
 
             await run(); // Reprocesses the data
-            adjustAngle(); // Runs the function again
+            return;
         }
 
         else {
             changes.pop("Angle") // Removes the angle tag
 
             notify("[!] Autopilot : Correct Angle");
-            autopilot(); // Continues the function
+            return;
         }
     }
 
@@ -449,15 +585,20 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
                     // ESSENTIAL system functions.
                     await adjustAltitude(altitude, maxAltitude, minAltitude, changes);
                     await adjustAngle(verticalspeed, maxVerticalSpeed, minVerticalSpeed, changes);
+                    changes.pop(); // Removes the ALL tag
+                    break;
 
                 default:
-                    notify("[!] main.error: critical error, in the application. Exiting.")
+                    notify("[!] main.error: critical error, in the application. Exiting.", values)
                     return; // Exits the application, to ensure, no looping of errors
             }
         })
     }
 
     async function main() {
+
+        notify("[!] Main : Starting autopilot...");
+
         await controlAircraft(changes); // Controls the aircraft.
         await alertPilotOfLanding(distance, maxDistance, minDistance); // Alerts pilot when close to the destination
         await alertPilotOfSystemInfo(fuel); // Alerts pilot when critical systems are not functioning correctly.
@@ -472,10 +613,21 @@ async function main() {
             path.resolve(__dirname, './output/'),
             path.resolve(__dirname, './output/data/'),
             path.resolve(__dirname, './output/logs/'),
+            path.resolve(__dirname, './config/')
         ]
 
+        const files = [
+            path.resolve(__dirname, './config/settings.js')
+        ]
+
+        const contents = {
+            settings: ""
+        }
+
+        notify("[!] Initialize : Creating folders");
         for (const folder of folders) {
             try { // Writes folder, if it doesn't exist.
+                notify("[!] Initialize : Writing folder, " + folder)
                 await fsPromises.mkdir(folder, { recursive: true });
             } catch (err) { // If error isn't saying that a folder already exists, throw that error.
                 if (err.code !== 'EEXIST') {
@@ -483,9 +635,21 @@ async function main() {
                 }
             }
         }
+
+        notify("[!] Initialize : Creating files");
+        for (const file of files) {
+            try { // Writes file, if it doesn't exist.
+                notify("[!] Initialize : Writing file, " + file)
+                await fsPromises.writeFile(file, '');
+            } catch (err) { // If error isn't saying that a file already exists, throw that error.
+                if (err.code !== 'EEXIST') {
+                    throw err; // This throws the error.
+                }
+            }
+        }
     }
 
-    try {
+    async function createInstance() {
         await initialize(); // Initializes the app, for the first time, and creates the folders required.
 
         const currentOCR = path.resolve(__dirname, './output/data/current.txt'); // Current OCR data
@@ -493,11 +657,12 @@ async function main() {
         await run(currentOCR); // Processes the image capture, image cropping, image recongition, and flight information.
         const { airspeed, altitude, destination, heading, fuel, verticalspeed, distance } = (await readOCR(currentOCR)).data; // Reads the current OCR data
         
-        autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel); // Starts the autopilot function.        
-    } catch (err) {
-        notify("[!] Error at Main : " + err);
-        // main();
+        autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel); // Starts the autopilot function.
     }
+
+    const { imageLatency } = require('./config/settings').settings; // Reads the image latency setting
+
+    setInterval(createInstance, imageLatency);
 }
 // Runs the main application function.
 setTimeout(main, 5000)
