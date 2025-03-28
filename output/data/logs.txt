@@ -1,0 +1,298 @@
+(15:19:17): [!] Main : Authenticating...
+(15:19:17): [!] Main : Authenticating...
+(15:19:17): [!] Main : Authenticating...
+(15:19:17): [!] Main : Authenticating...
+(15:19:17): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:17): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:17): [!] Main : Starting the application...
+(15:19:17): [!] Initialize : Creating folders
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\logs
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\config
+(15:19:17): [!] Initialize : Creating files
+(15:19:17): [!] Initialize : Writing file, C:\Users\jedik\Documents\Aeronautica Autopilot\config\settings.js
+(15:19:17): [!] Debug : Starting processor
+(15:19:17): [!] Debug : Taking Screenshot
+(15:19:17): [!] Debug : Resized image metadata:,[object Object]
+(15:19:17): [!] Debug : Splitting Screenshot
+(15:19:17): [!] Main : Authenticating...
+(15:19:17): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:17): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:17): [!] Main : Starting the application...
+(15:19:17): [!] Initialize : Creating folders
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\logs
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\config
+(15:19:17): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:17): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:17): [!] Main : Starting the application...
+(15:19:17): [!] Initialize : Creating folders
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:17): [!] Initialize : Creating files
+(15:19:17): [!] Initialize : Writing file, C:\Users\jedik\Documents\Aeronautica Autopilot\config\settings.js
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
+(15:19:17): [!] Debug : Starting processor
+(15:19:17): [!] Debug : Taking Screenshot
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\logs
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\config
+(15:19:17): [!] Debug : Resized image metadata:,[object Object]
+(15:19:17): [!] Debug : Splitting Screenshot
+(15:19:17): [!] Initialize : Creating files
+(15:19:17): [!] Initialize : Writing file, C:\Users\jedik\Documents\Aeronautica Autopilot\config\settings.js
+(15:19:17): [!] Debug : Starting processor
+(15:19:17): [!] Debug : Taking Screenshot
+(15:19:17): [!] Debug : Resized image metadata:,[object Object]
+(15:19:17): [!] Debug : Splitting Screenshot
+(15:19:17): [!] Main : Authenticating...
+(15:19:17): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:17): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:17): [!] Main : Starting the application...
+(15:19:17): [!] Initialize : Creating folders
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:17): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:17): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:17): [!] Main : Starting the application...
+(15:19:17): [!] Initialize : Creating folders
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
+(15:19:17): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:17): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:17): [!] Main : Starting the application...
+(15:19:17): [!] Initialize : Creating folders
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\logs
+(15:19:17): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\logs
+(15:19:17): [✔] Screenshot Processing Completed
+(15:19:17): [!] Debug : Writing OCR
+(15:19:17): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(15:19:18): [!] Main : Authenticating...
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\config
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\config
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\logs
+(15:19:18): [!] Initialize : Creating files
+(15:19:18): [!] Initialize : Writing file, C:\Users\jedik\Documents\Aeronautica Autopilot\config\settings.js
+(15:19:18): [!] Initialize : Creating files
+(15:19:18): [!] Initialize : Writing file, C:\Users\jedik\Documents\Aeronautica Autopilot\config\settings.js
+(15:19:18): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:18): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:18): [!] Main : Starting the application...
+(15:19:18): [!] Initialize : Creating folders
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\config
+(15:19:18): [!] Debug : Starting processor
+(15:19:18): [!] Debug : Taking Screenshot
+(15:19:18): [!] Debug : Starting processor
+(15:19:18): [!] Debug : Taking Screenshot
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
+(15:19:18): [!] Initialize : Creating files
+(15:19:18): [!] Initialize : Writing file, C:\Users\jedik\Documents\Aeronautica Autopilot\config\settings.js
+(15:19:18): [!] Debug : Resized image metadata:,[object Object]
+(15:19:18): [!] Debug : Splitting Screenshot
+(15:19:18): [!] Main : Authenticating...
+(15:19:18): [!] Debug : Resized image metadata:,[object Object]
+(15:19:18): [!] Debug : Splitting Screenshot
+(15:19:18): [✔] Screenshot Processing Completed
+(15:19:18): [!] Debug : Writing OCR
+(15:19:18): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(15:19:18): [✔] Screenshot Processing Completed
+(15:19:18): [!] Debug : Writing OCR
+(15:19:18): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\logs
+(15:19:18): [!] Debug : Starting processor
+(15:19:18): [!] Debug : Taking Screenshot
+(15:19:18): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:18): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:18): [!] Main : Starting the application...
+(15:19:18): [!] Initialize : Creating folders
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\config
+(15:19:18): [!] Debug : Resized image metadata:,[object Object]
+(15:19:18): [!] Debug : Splitting Screenshot
+(15:19:18): [!] Main : Authenticating...
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
+(15:19:18): [!] Initialize : Creating files
+(15:19:18): [!] Initialize : Writing file, C:\Users\jedik\Documents\Aeronautica Autopilot\config\settings.js
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\logs
+(15:19:18): [!] Debug : Starting processor
+(15:19:18): [!] Debug : Taking Screenshot
+(15:19:18): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:18): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:18): [!] Main : Starting the application...
+(15:19:18): [!] Initialize : Creating folders
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:18): [!] Main : Authenticating...
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\config
+(15:19:18): [!] Debug : Resized image metadata:,[object Object]
+(15:19:18): [!] Debug : Splitting Screenshot
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
+(15:19:18): [!] Initialize : Creating files
+(15:19:18): [!] Initialize : Writing file, C:\Users\jedik\Documents\Aeronautica Autopilot\config\settings.js
+(15:19:18): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:18): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:18): [!] Main : Starting the application...
+(15:19:18): [!] Initialize : Creating folders
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:18): [!] Main : Authenticating...
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\logs
+(15:19:18): [!] Debug : Starting processor
+(15:19:18): [!] Debug : Taking Screenshot
+(15:19:18): [✔] Screenshot Processing Completed
+(15:19:18): [!] Debug : Writing OCR
+(15:19:18): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(15:19:18): [!] Debug : Resized image metadata:,[object Object]
+(15:19:18): [!] Debug : Splitting Screenshot
+(15:19:18): [✔] Screenshot Processing Completed
+(15:19:18): [!] Debug : Writing OCR
+(15:19:18): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\config
+(15:19:18): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:18): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:18): [!] Main : Starting the application...
+(15:19:18): [!] Initialize : Creating folders
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:18): [!] Main : Authenticating...
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\logs
+(15:19:18): [!] Initialize : Creating files
+(15:19:18): [!] Initialize : Writing file, C:\Users\jedik\Documents\Aeronautica Autopilot\config\settings.js
+(15:19:18): [✔] Screenshot Processing Completed
+(15:19:18): [!] Debug : Writing OCR
+(15:19:18): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(15:19:18): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
+(15:19:18): [!] Main : Authenticating...
+(15:19:18): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:19): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:19): [!] Main : Starting the application...
+(15:19:19): [!] Initialize : Creating folders
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\config
+(15:19:19): [!] Main : Authenticating...
+(15:19:19): [!] Debug : Starting processor
+(15:19:19): [!] Debug : Taking Screenshot
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\logs
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
+(15:19:19): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:19): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:19): [!] Main : Starting the application...
+(15:19:19): [!] Initialize : Creating folders
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:19): [!] Main : Authenticating...
+(15:19:19): [!] Initialize : Creating files
+(15:19:19): [!] Initialize : Writing file, C:\Users\jedik\Documents\Aeronautica Autopilot\config\settings.js
+(15:19:19): [!] Debug : Resized image metadata:,[object Object]
+(15:19:19): [!] Debug : Splitting Screenshot
+(15:19:19): [✔] Screenshot Processing Completed
+(15:19:19): [!] Debug : Writing OCR
+(15:19:19): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(15:19:19): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:19): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:19): [!] Main : Starting the application...
+(15:19:19): [!] Initialize : Creating folders
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\config
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\logs
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
+(15:19:19): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:19): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:19): [!] Main : Starting the application...
+(15:19:19): [!] Initialize : Creating folders
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:19): [!] Main : Authenticating...
+(15:19:19): [!] Debug : Starting processor
+(15:19:19): [!] Debug : Taking Screenshot
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
+(15:19:19): [✔] Screenshot Processing Completed
+(15:19:19): [!] Debug : Writing OCR
+(15:19:19): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(15:19:19): [!] Initialize : Creating files
+(15:19:19): [!] Initialize : Writing file, C:\Users\jedik\Documents\Aeronautica Autopilot\config\settings.js
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\config
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\logs
+(15:19:19): [!] Debug : Resized image metadata:,[object Object]
+(15:19:19): [!] Debug : Splitting Screenshot
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
+(15:19:19): [!] Main : Authenticating...
+(15:19:19): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:19): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:19): [!] Main : Starting the application...
+(15:19:19): [!] Initialize : Creating folders
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\logs
+(15:19:19): [!] Debug : Starting processor
+(15:19:19): [!] Debug : Taking Screenshot
+(15:19:19): [!] Initialize : Creating files
+(15:19:19): [!] Initialize : Writing file, C:\Users\jedik\Documents\Aeronautica Autopilot\config\settings.js
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\config
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\logs
+(15:19:19): [!] Main : Authenticating...
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
+(15:19:19): [!] Debug : Resized image metadata:,[object Object]
+(15:19:19): [!] Debug : Splitting Screenshot
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\config
+(15:19:19): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:19): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:19): [!] Main : Starting the application...
+(15:19:19): [!] Initialize : Creating folders
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:19): [!] Debug : Starting processor
+(15:19:19): [!] Debug : Taking Screenshot
+(15:19:19): [!] Initialize : Creating files
+(15:19:19): [!] Initialize : Writing file, C:\Users\jedik\Documents\Aeronautica Autopilot\config\settings.js
+(15:19:19): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\config
+(15:19:19): [!] API errorred with message : Error communicating with the API
+,AxiosError: Request failed with status code 404
+(15:19:19): [!] API errored with message : Error communicating with the API
+,TypeError: Cannot read properties of undefined (reading 'publicEncrypt')
+(15:19:19): [!] Main : Starting the application...
+(15:19:19): [!] Initialize : Creating folders
+(15:19:20): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output
+(15:19:20): [!] Main : Authenticating...
+(15:19:20): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\logs
+(15:19:20): [!] Debug : Resized image metadata:,[object Object]
+(15:19:20): [!] Debug : Splitting Screenshot
+(15:19:20): [!] Initialize : Creating files
+(15:19:20): [!] Initialize : Writing file, C:\Users\jedik\Documents\Aeronautica Autopilot\config\settings.js
+(15:19:20): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
+(15:19:20): [!] Debug : Starting processor
+(15:19:20): [!] Debug : Taking Screenshot
+(15:19:20): [!] Initialize : Creating files
+(15:19:20): [!] Initialize : Writing file, C:\Users\jedik\Documents\Aeronautica Autopilot\config\settings.js
+(15:19:20): [!] Initialize : Writing folder, C:\Users\jedik\Documents\Aeronautica Autopilot\output\data
