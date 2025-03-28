@@ -130,13 +130,14 @@ class Server {
         try {
             const encryptedMessage = this.encrypt(this.api.publicKey, "GET_CONFIG");
             const response = await axios.get(this.apiURL + 'api/request', {
+                encrypted: encryptedMessage
+            }, {
                 method: 'GET',
                 headers: {
                     'Content-Type': this.contentType,
                     'application-id': this.appId, 
                     'application-name': this.appName,
                     'x-api-key': this.api.apiKey,
-                    'encrypted': encryptedMessage
                 }
             });
 
