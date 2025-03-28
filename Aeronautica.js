@@ -31,7 +31,7 @@ class Server {
         this.appId = "cassitly.io/api:Aeronautica-Autopilot";
         this.appName = "api:request/app[Aeronautica-Autpilot]";
         this.contentType = 'application/json';
-        this.apiURL = "https://preview-cassityapi.vercel.app/";
+        this.apiURL = "https://cassitlyapi.vercel.app/";
 
         this.publicKey = this.keys.publicKey;
         this.privateKey = this.keys.privateKey;
@@ -44,7 +44,7 @@ class Server {
             publicKey = `-----BEGIN PUBLIC KEY-----\n${publicKey}\n-----END PUBLIC KEY-----`;
         }
     
-        const buffer = Buffer.from(message, "utf-8");
+        const buffer = Buffer.from(message);
         return crypto.publicEncrypt(
             {
                 key: publicKey,
@@ -56,7 +56,7 @@ class Server {
     
 
     decrypt(encryptedMessage) {
-        const buffer = Buffer.from(encryptedMessage, "base64");
+        const buffer = Buffer.from(encryptedMessage);
         return crypto.privateDecrypt(
             {
                 key: this.privateKey,
@@ -86,7 +86,7 @@ class Server {
                 notify("[!] API : Authenticated");
             }
     
-            this.api.publicKey = response.data.publicKey;
+            this.api.publicKey = response.data.key;
         } catch (error) {
             notify("[!] API error: " + error);
         }
