@@ -682,7 +682,6 @@ async function main() {
         for (const folder of folders) {
             if (!fs.existsSync(path.resolve(folder))) {
                 try { // Writes folder, if it doesn't exist.
-                    notify("[!] Initialize : Writing folder, " + folder)
                     await fsPromises.mkdir(folder, { recursive: true });
                 } catch (err) { // If error isn't saying that a folder already exists, throw that error.
                     if (err.code !== 'EEXIST') {
@@ -695,7 +694,6 @@ async function main() {
         for (const file of files) {
             if (!fs.existsSync(path.resolve(file))) {
                 try { // Writes file, if it doesn't exist.
-                    notify("[!] Initialize : Writing file, " + file)
                     await fsPromises.writeFile(file, contents[0]);
                 } catch (err) { // If error isn't saying that a file already exists, throw that error.
                     if (err.code !== 'EEXIST') {
