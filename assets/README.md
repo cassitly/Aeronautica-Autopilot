@@ -22,7 +22,7 @@ npm install
 ```
 or
 ```bash
-npm install fs date-and-time tesseract.js sharp node-key-sender path screenshot-desktop
+npm install fs date-and-time tesseract.js sharp node-key-sender path screenshot-desktop axios crypto
 ```
 
 ### 3. **Project Structure**
