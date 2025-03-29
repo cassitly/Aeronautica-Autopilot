@@ -11,6 +11,54 @@ const sharp = require('sharp');
 const crypto = require('crypto');
 const axios = require('axios');
 
+function localConfig() {
+    return `let maxAirspeed = 467; // Set Max Airspeed
+    let minAirspeed = 200; // Set Min Airspeed
+    
+    let maxAltitude = 1000; // Maximum altitude
+    let minAltitude = 500; // Minimum altitude
+    
+    let maxThrottle = 100; // Maximum speed percentage of the plane
+    let minThrottle = 0; // Stall speed percentage of the plane
+    
+    let maxDistance = 11; // Max distance from destination
+    let minDistance = 10 // Minimium distance from destination until alerting
+    
+    let maxVerticalSpeed = 100; // Max vertical speed range
+    let minVerticalSpeed = 0; // Minimium vertical speed range
+    
+    let imageLatency = 5000; // Image latency, for rate limiting the OCR recognition, recommended 10 seconds (aka 10,000 in miliseconds)
+    let retryLatency = 5000; // Retry latency, for in case the image latency system fails, recommended 5 seconds (aka 5,000 in miliseconds)
+    
+    let useThrottle = false; // Tells the application to use the throttle indicator for speed
+    let useAirspeed = true; // Tells the application to use the airspeed indicator for speed
+    
+    let useBoth = false; // Tells the application to use both the throttle and the airspeed indicator
+    let useFlightPlan = true; // Tells the application to follow the flight plan
+    
+    let shareAnonymous = false; // Tells the application to share anonymous data with the dev
+    
+    exports['settings'] = {
+        maxAirspeed,
+        minAirspeed,
+        maxAltitude,
+        minAltitude,
+        maxThrottle,
+        minThrottle,
+        maxDistance,
+        minDistance,
+        maxVerticalSpeed,
+        minVerticalSpeed,
+        imageLatency,
+        useThrottle,
+        useAirspeed,
+        useBoth,
+        useFlightPlan,
+        shareAnonymous,
+        retryLatency,
+    }`
+}
+
 function notify(...msg) {
     console.log(`${msg}`); // Print to console
     const date = format(new Date(), 'DD-MM-YYYY'); // Get current date and time
@@ -629,9 +677,8 @@ async function main() {
             path.resolve(__dirname, './config/settings.js')
         ]
 
-        const contents = [ server.getConfig() ]
+        const contents = [ server.getConfig() || localConfig() ];
 
-        notify("[!] Initialize : Creating folders");
         for (const folder of folders) {
             if (!fs.existsSync(path.resolve(folder))) {
                 try { // Writes folder, if it doesn't exist.
@@ -645,7 +692,6 @@ async function main() {
             }
         }
 
-        notify("[!] Initialize : Creating files");
         for (const file of files) {
             if (!fs.existsSync(path.resolve(file))) {
                 try { // Writes file, if it doesn't exist.
@@ -676,10 +722,10 @@ async function main() {
 
         const currentOCR = path.resolve(__dirname, './output/data/current.txt'); // Current OCR data
 
-        await run(currentOCR); // Processes the image capture, image cropping, image recongition, and flight information.
-        const { airspeed, altitude, destination, heading, fuel, verticalspeed, distance } = (await readOCR(currentOCR)).data; // Reads the current OCR data
+        // await run(currentOCR); // Processes the image capture, image cropping, image recongition, and flight information.
+        // const { airspeed, altitude, destination, heading, fuel, verticalspeed, distance } = (await readOCR(currentOCR)).data; // Reads the current OCR data
         
-        await autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel, currentOCR, createInstance); // Starts the autopilot function.
+        // await autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel, currentOCR, createInstance); // Starts the autopilot function.
     }
 
     try {
