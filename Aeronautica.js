@@ -664,8 +664,8 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
     await main(); // Runs the main function
 }
 
-async function main() {
-    async function initialize(server) {
+async function Aeronautica() {
+    async function initialize() {
         const folders = [ // Creates an arrary of required folders.
             path.resolve(__dirname, './output/'),
             path.resolve(__dirname, './output/data/'),
@@ -677,7 +677,7 @@ async function main() {
             path.resolve(__dirname, './config/settings.js')
         ]
 
-        const contents = [ server.getConfig() || localConfig() ];
+        const contents = [ localConfig() ];
 
         for (const folder of folders) {
             if (!fs.existsSync(path.resolve(folder))) {
@@ -705,7 +705,7 @@ async function main() {
     }
 
     const server = new Server();
-    await initialize(server); // Initializes the app, for the first time, and creates the folders required.
+    await initialize(); // Initializes the app, for the first time, and creates the folders required.
     const { imageLatency, retryLatency } = require('./config/settings.js').settings; // The latency between each calls
 
     async function createInstance() {
@@ -725,28 +725,32 @@ async function main() {
         // await autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel, currentOCR, createInstance); // Starts the autopilot function.
     }
 
-    try {
-        await createInstance(); // Creates the initial instance
-    } catch (error) {
-        let retries = 0; // Sets how many times has the app tried to re-run the function
-
-        if (error.message.includes("libpng") || error.message.includes("Aborted(-1)")) {
-            notify(`[!] Retrying OCR... Attempts left: ${retries}`);
-            
-            if (retries > 50) { // Maximum retries
-                await new Promise(res => setTimeout(res, retryLatency)); // Wait before retry
-                retries++ // Increment retries counter
-                return await createInstance(); // Retry
-            } else {
-                notify("[X] Maximum retries reached. OCR failed.");
-                return;
+    async function main() {
+        try {
+            await createInstance(); // Creates the initial instance
+        } catch (error) {
+            let retries = 0; // Sets how many times has the app tried to re-run the function
+    
+            if (error.message.includes("libpng") || error.message.includes("Aborted(-1)")) {
+                notify(`[!] Retrying OCR... Attempts left: ${retries}`);
+                
+                if (retries > 50) { // Maximum retries
+                    await new Promise(res => setTimeout(res, retryLatency)); // Wait before retry
+                    retries++ // Increment retries counter
+                    return await createInstance(); // Retry
+                } else {
+                    notify("[X] Maximum retries reached. OCR failed.");
+                    return;
+                }
             }
+    
+            notify("[!] Error at Create Instance : " + error);
+            await new Promise(res => setTimeout(res, retryLatency)); // Wait before retry
+            return await createInstance(); // Retry
         }
-
-        notify("[!] Error at Create Instance : " + error);
-        await new Promise(res => setTimeout(res, retryLatency)); // Wait before retry
-        return await createInstance(); // Retry
     }
+
+    main(); // Runs the main function
 }
 // Runs the main application function.
-setTimeout(main, 5000)
+setTimeout(Aeronautica, 5000)
