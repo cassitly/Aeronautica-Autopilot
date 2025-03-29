@@ -706,6 +706,8 @@ async function main() {
         }
     }
 
+    await initialize(server); // Initializes the app, for the first time, and creates the folders required.
+
     const server = new Server();
     const { imageLatency, retryLatency } = require('./config/settings.js').settings; // The latency between each calls
 
@@ -717,8 +719,6 @@ async function main() {
         notify("[!] Main : Starting the application...");
 
         await server.sendData() // If the user allows data, to be sent to the API anoymously, this function sends it
-
-        await initialize(server); // Initializes the app, for the first time, and creates the folders required.
 
         const currentOCR = path.resolve(__dirname, './output/data/current.txt'); // Current OCR data
 
