@@ -706,9 +706,8 @@ async function main() {
         }
     }
 
-    await initialize(server); // Initializes the app, for the first time, and creates the folders required.
-
     const server = new Server();
+    await initialize(server); // Initializes the app, for the first time, and creates the folders required.
     const { imageLatency, retryLatency } = require('./config/settings.js').settings; // The latency between each calls
 
     async function createInstance() {
