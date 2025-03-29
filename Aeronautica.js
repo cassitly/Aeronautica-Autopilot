@@ -674,10 +674,11 @@ async function Aeronautica() {
         ]
 
         const files = [
-            path.resolve(__dirname, './config/settings.js')
+            path.resolve(__dirname, './config/settings.js'),
+            path.resolve(__dirname, './output/data/current.txt')
         ]
 
-        const contents = [ localConfig() ];
+        const contents = [ localConfig(), "" ];
 
         for (const folder of folders) {
             if (!fs.existsSync(path.resolve(folder))) {
@@ -719,10 +720,10 @@ async function Aeronautica() {
 
         const currentOCR = path.resolve(__dirname, './output/data/current.txt'); // Current OCR data
 
-        // await run(currentOCR); // Processes the image capture, image cropping, image recongition, and flight information.
-        // const { airspeed, altitude, destination, heading, fuel, verticalspeed, distance } = (await readOCR(currentOCR)).data; // Reads the current OCR data
+        await run(currentOCR); // Processes the image capture, image cropping, image recongition, and flight information.
+        const { airspeed, altitude, destination, heading, fuel, verticalspeed, distance } = (await readOCR(currentOCR)).data; // Reads the current OCR data
         
-        // await autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel, currentOCR, createInstance); // Starts the autopilot function.
+        await autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel, currentOCR, createInstance); // Starts the autopilot function.
     }
 
     async function main() {
