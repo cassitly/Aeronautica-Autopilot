@@ -75,6 +75,7 @@ Configure all of the values to your (aircraft's) liking! 😁
     - Use camera 5, for enchanced results.
     - Turn ROBLOX's Graphics Quality to the LOWEST option, as this makes graphics more consistent with the GUI.
     - Set Aeronautica's in-game 'User Interface Scale' to MAX (1.5).
+    - It is recommended to set roblox to fullscreen, to prevent unexplained errors.
 
 - Set up your webhook in a channel/server with only you, as notifications should be set to all messages, which will ping all with access to the channel!
 
