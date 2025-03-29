@@ -158,7 +158,7 @@ async function capture(imgPath, imgArrary) {
         const fullimg = "./output/screenshot_full.png";
 
         notify("[!] Debug : Taking Screenshot");
-        await screenshot({ filename: imgPath });
+        await screenshot({ filename: imgPath, format: "png" });
 
         // // Resize first and save to imgPath
         // await sharp(fullimg)
@@ -167,7 +167,7 @@ async function capture(imgPath, imgArrary) {
 
         // Ensure the resized image is fully processed
         const metadata = await sharp(imgPath).metadata();
-        notify("[!] Debug : Resized image metadata:", metadata);
+        notify("[!] Debug : Resized image metadata: " + metadata);
 
         // Ensure extraction area is within image boundaries
         const width = metadata.width;
@@ -210,7 +210,7 @@ async function capture(imgPath, imgArrary) {
 async function recongize(imgPath) {
     try {
         notify("[!] Debug : Recongizing Image [", imgPath, "]");
-        const { data: { text } } = await Tesseract.recognize(imgPath, 'eng'); // Perform OCR
+        const { data: { text } } = await Tesseract.recognize(imgPath);
         // notify("OCR Output:", text);
         /// fs.appendFileSync(path.resolve(__dirname, './notepad.txt'), text); // Write to file for debugging
         return text; // Returns the text data to be written
@@ -226,6 +226,8 @@ async function writeOCR(imgArrary, currentOCR) {
             fs.writeFileSync(currentOCR, ""); // Clears the current OCR data
         } // If the current OCR has data, clear it.
 
+        fs.appendFileSync(currentOCR, await recongize("./output/screenshot.png")) // Backup read, incase initals failed.
+
         for (const img of imgArrary) // For each image in the arrary
 
         { let data = await recongize(img); // Wait for OCR recognition on each image          
@@ -237,59 +239,74 @@ async function writeOCR(imgArrary, currentOCR) {
 }
 
 async function readOCR(currentOCR) {
-    try {
-        notify("[!] Debug : Reading OCR");
-        const text = fs.readFileSync(currentOCR, 'utf-8'); // Reads the current OCR data
-    
-        // Extract flight data from text
-        const airspeed = text.match(/AIRSPEED\n(.+)/);
-        // [0] outputs: AIRSPEED\n468
-        // [1] outputs: 468
+    notify("[!] Debug : Reading OCR");
+    const text = fs.readFileSync(currentOCR, 'utf-8'); // Reads the current OCR data
 
-        const altitude = text.match(/ALTITUDE\n(.+)/);
-        // [0] outputs: ALTITUDE\n11400
-        // [1] outputs: 11400
+    // Extract flight data from text
+    const airspeed = text.match(/AIRSPEED\n(.+)/)?.[1];
+    // [0] outputs: AIRSPEED\n468
+    // [1] outputs: 468
 
-        const destination = text.match(/(.+)°/);
-        // [0] outputs: DEST 245°
-        // [1] outputs: 245°
+    const altitude = text.match(/ALTITUDE\n(.+)/)?.[1];
+    // [0] outputs: ALTITUDE\n11400
+    // [1] outputs: 11400
 
-        const heading = text.match(/HDG(.+)/);
-        // [0] outputs: HDG245
-        // [1] outputs: 245
+    const destination = text.match(/(.+)°/)?.[1];
+    // [0] outputs: DEST 245°
+    // [1] outputs: 245°
 
-        const fuel = text.match(/FUEL\n(.+)\%/);
-        // [0] outputs: FUEL\n43.4%
-        // [1] outputs: 43.4
+    const heading = text.match(/HDG(.+)/)?.[1];
+    // [0] outputs: HDG245
+    // [1] outputs: 245
 
-        const verticalspeed = text.match(/VERTICAL SPEED\n(.+) ft\/m/);
-        // [0] outputs: VERTICAL SPEED\n56.8 ft/m
-        // [1] outputs: 56.8
+    const fuel = text.match(/FUEL\n(.+)\%/)?.[1];
+    // [0] outputs: FUEL\n43.4%
+    // [1] outputs: 43.4
 
-        // const distance = text.match(/(.+) nm/);
-        // [0] outputs: Distance: 176.81 nm
-        // [1] outputs: 176.81
+    const verticalspeed = text.match(/VERTICAL SPEED\n(.+) ft\/m/)?.[1];
+    // [0] outputs: VERTICAL SPEED\n56.8 ft/m
+    // [1] outputs: 56.8
 
-        // In development
-        // const throttle = match(/AIRSPEED (.+)\%/);
-        // [0] outputs: 100%
-        // [1] outputs: 100
+    const distance = text.match(/(.+) nm/)?.[1];
+    // [0] outputs: Distance: 176.81 nm
+    // [1] outputs: 176.81
 
-        return {
-            data: {
-                destination: destination[1],
-                airspeed: airspeed[1],
-                altitude: altitude[1],
-                heading: heading[1],
-                fuel: fuel[1],
-                verticalspeed: verticalspeed[1],
-                // distance: distance[1]
-            }
+    // In development
+    // const throttle = match(/AIRSPEED (.+)\%/);
+    // [0] outputs: 100%
+    // [1] outputs: 100
+
+    const array = [
+        destination,
+        airspeed,
+        altitude,
+        heading,
+        fuel,
+        verticalspeed,
+        distance
+    ]
+
+    let data = {
+        data: {
+            destination,
+            airspeed,
+            altitude,
+            heading,
+            fuel,
+            verticalspeed,
+            distance
         }
-    } catch (err) {
-        notify("[!] Error at Read : " + err);
-        readOCR(currentOCR); // Continues with errors
-    }
+    };
+
+    array.forEach((value, index) => {
+        if (value === null) {
+            const keys = ["destination", "airspeed", "altitude", "heading", "fuel", "verticalspeed", "distance"];
+            return data.data[keys[index]] = "N/A";
+        }
+    });
+
+    notify("[!] Debug : Reading OCR Complete");
+    return data;
 }
 
 async function run(currentOCR) {
@@ -305,7 +322,7 @@ async function run(currentOCR) {
         ]
         await capture(imgPath, imgArrary); // Captures the image and extracts data from it.
 
-        await writeOCR(imgArrary, currentOCR); // Recongize the extracted data and write to file        
+        await writeOCR(imgArrary, currentOCR); // Recongize the extracted data and write to file       
     } catch (error) {
         notify("[!] Error at processing : " + error.code + "\n" + error.message);
     }
@@ -335,7 +352,7 @@ async function checkPlatform() {
     }
 }
 
-async function autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel, currentOCR) {
+async function autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel, currentOCR, createInstance) {
     let changes = ["ALL"] // Creates an variable for autopilot changes
 
     if (!Array.isArray(changes)) { // Checks if changes is an arrary
@@ -372,8 +389,7 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
 
                 changes.push("Heading") // Tells the computer, a change of the heading is being made
     
-                await run(currentOCR); // Reprocesses the data
-                return;
+                await createInstance(); // Reprocesses the data
             }
             
             else if (heading > destination) { // If the heading is greater than the destination
@@ -382,9 +398,8 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
                 await keySender.sendKey("d"); // adjust to the right
 
                 changes.push("Heading") // Tells the computer, a change of the heading is being made
-    
-                await run(currentOCR); // Reprocesses the data
-                return;
+
+                await createInstance(); // Reprocesses the data
             }
 
             else if (heading === destination) {
@@ -409,8 +424,7 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
 
             changes.push("Throttle") // Tells the computer that a current change of the throttle is being made
     
-            await run(currentOCR); // Reprocesses the data
-            return;
+            await createInstance(); // Reprocesses the data
         }
         
         else if (airspeed < minAirspeed) { // If the airspeed is less than the min airspeed
@@ -419,8 +433,7 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
 
             changes.push("Throttle") // Tells the computer that a current change of the throttle is being made
     
-            await run(currentOCR); // Reprocesses the data
-            return;
+            await createInstance(); // Reprocesses the data
         }
 
         else {
@@ -439,8 +452,7 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
 
             changes.push("Altitude") // Tells the computer, a current change of altitude is being made
     
-            await run(currentOCR); // Reprocesses the data
-            return;
+            await createInstance(); // Reprocesses the data
         }
         
         else if (altitude < minAltitude) { // If the altitude is less than the min altitude
@@ -449,8 +461,7 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
 
             changes.push("Altitude") // Tells the computer, a current change of altitude is being made
     
-            await run(currentOCR); // Reprocesses the data
-            return;
+            await createInstance(); // Reprocesses the data
         }
 
         else {
@@ -469,8 +480,7 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
 
             changes.push("Angle"); // Tells the computer, that a current change of the angle is being made
 
-            await run(currentOCR); // Reprocesses the data
-            return;
+            await createInstance(); // Reprocesses the data
         }
 
         else if (verticalspeed < minVerticalSpeed) {
@@ -479,15 +489,13 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
             
             changes.push("Angle"); // Tells the computer, that a current change is being made
 
-            await run(currentOCR); // Reprocesses the data
-            return;
+            await createInstance(); // Reprocesses the data
         }
 
         else {
             changes.pop("Angle") // Removes the angle tag
 
             notify("[!] Autopilot : Correct Angle");
-            return;
         }
     }
 
@@ -511,7 +519,6 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
                 notify("[!] Autopilot : " + distance + "nm away from destination");
             }
         } else {
-            await run(currentOCR); // Reprocesses the data
             return; // Returns to the main function
         }
     }
@@ -563,7 +570,6 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
 
     async function controlAircraft(changes) {
         changes.forEach(async (values) => {
-            new Promise(resolve => setTimeout(resolve, 1000));
             switch (values) {
                 case "Heading":
                     await settings(values)
@@ -605,7 +611,6 @@ async function autopilot(heading, destination, altitude, verticalspeed, airspeed
         await controlAircraft(changes); // Controls the aircraft.
         await alertPilotOfLanding(distance, maxDistance, minDistance); // Alerts pilot when close to the destination
         await alertPilotOfSystemInfo(fuel); // Alerts pilot when critical systems are not functioning correctly.
-        await autopilot(); // Runs the autopilot
     }
 
     await main(); // Runs the main function
@@ -656,6 +661,7 @@ async function main() {
     }
 
     const server = new Server();
+    const { imageLatency, retryLatency } = require('./config/settings.js').settings; // The latency between each calls
 
     async function createInstance() {
         notify("[!] Main : Authenticating...");
@@ -673,14 +679,31 @@ async function main() {
         await run(currentOCR); // Processes the image capture, image cropping, image recongition, and flight information.
         const { airspeed, altitude, destination, heading, fuel, verticalspeed, distance } = (await readOCR(currentOCR)).data; // Reads the current OCR data
         
-        autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel, currentOCR); // Starts the autopilot function.
+        await autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel, currentOCR, createInstance); // Starts the autopilot function.
     }
 
-    const { imageLatency } = require('./config/settings.js').settings
+    try {
+        await createInstance(); // Creates the initial instance
+    } catch (error) {
+        let retries = 0; // Sets how many times has the app tried to re-run the function
 
-    await createInstance();
+        if (error.message.includes("libpng") || error.message.includes("Aborted(-1)")) {
+            notify(`[!] Retrying OCR... Attempts left: ${retries}`);
+            
+            if (retries > 50) { // Maximum retries
+                await new Promise(res => setTimeout(res, retryLatency)); // Wait before retry
+                retries++ // Increment retries counter
+                return await createInstance(); // Retry
+            } else {
+                notify("[X] Maximum retries reached. OCR failed.");
+                return;
+            }
+        }
 
-    // setInterval(await createInstance, parseInt(imageLatency)); // Creates the instance
+        notify("[!] Error at Create Instance : " + error);
+        await new Promise(res => setTimeout(res, retryLatency)); // Wait before retry
+        return await createInstance(); // Retry
+    }
 }
 // Runs the main application function.
 setTimeout(main, 5000)
