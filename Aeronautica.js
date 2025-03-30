@@ -745,7 +745,7 @@ async function runner() {
             await authenticateAPI(); // Authenticates the API        
             notify("[!] Main : Starting the application...");
     
-            // await runInstance(); // Runs the main function
+            await runInstance(); // Runs the main function
         }
     
         async function main() {
