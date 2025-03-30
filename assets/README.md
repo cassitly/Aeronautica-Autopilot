@@ -22,7 +22,7 @@ npm install
 ```
 or
 ```bash
-npm install fs date-and-time tesseract.js sharp node-key-sender path screenshot-desktop
+npm install fs date-and-time tesseract.js sharp node-key-sender path screenshot-desktop axios crypto
 ```
 
 ### 3. **Project Structure**
@@ -74,7 +74,8 @@ Configure all of the values to your (aircraft's) liking! 😁
 - For enhanced (OCR) results, consider doing the following:
     - Use camera 5, for enchanced results.
     - Turn ROBLOX's Graphics Quality to the LOWEST option, as this makes graphics more consistent with the GUI.
-    - Set Aeronautica's in-game 'User Interface Scale' to MAX (1.5).
+    - Set Aeronautica's in-game 'User Interface Scale' to (1), any other value, will make OCR less usable.
+    - It is recommended to set roblox to fullscreen, to prevent unexplained errors.
 
 - Set up your webhook in a channel/server with only you, as notifications should be set to all messages, which will ping all with access to the channel!
 
