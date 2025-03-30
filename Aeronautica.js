@@ -414,7 +414,7 @@ async function runner() {
         }
     }
     
-    async function autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel, currentOCR, createInstance) {
+    async function autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel, createInstance) {
         let changes = ["ALL"] // Creates an variable for autopilot changes
     
         if (!Array.isArray(changes)) { // Checks if changes is an arrary
@@ -673,6 +673,7 @@ async function runner() {
             await controlAircraft(changes); // Controls the aircraft.
             await alertPilotOfLanding(distance, maxDistance, minDistance); // Alerts pilot when close to the destination
             await alertPilotOfSystemInfo(fuel); // Alerts pilot when critical systems are not functioning correctly.
+            // await createInstance(); // Reprocesses the data
         }
     
         await main(); // Runs the main function
@@ -725,7 +726,7 @@ async function runner() {
             await run(currentOCR); // Processes the image capture, image cropping, image recongition, and flight information.
             const { airspeed, altitude, destination, heading, fuel, verticalspeed, distance } = (await readOCR(currentOCR)).data; // Reads the current OCR data
             
-            await autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel, currentOCR, createInstance); // Starts the autopilot function.
+            await autopilot(heading, destination, altitude, verticalspeed, airspeed, distance, fuel, createInstance); // Starts the autopilot function.
         }
     
         const server = new Server();
