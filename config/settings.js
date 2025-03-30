@@ -1,4 +1,5 @@
-let maxAirspeed = 467; // Set Max Airspeed
+
+        let maxAirspeed = 467; // Set Max Airspeed
         let minAirspeed = 200; // Set Min Airspeed
         
         let maxAltitude = 1000; // Maximum altitude

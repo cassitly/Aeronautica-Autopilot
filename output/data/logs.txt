@@ -757,3 +757,6 @@
 (12:18:13): [!] Autopilot : Correct Altitude
 (12:18:13): [!] Autopilot : Adjusting angle
 (12:18:13): [!] Autopilot : Correct Angle
+(12:27:26): [!] Main : Authenticating...
+(12:27:27): [!] API error: AxiosError: Request failed with status code 404
+(12:27:27): [!] Main : Starting the application...
