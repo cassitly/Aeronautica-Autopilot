@@ -1,0 +1,759 @@
+(12:12:37): [!] Main : Authenticating...
+(12:12:37): [!] API error: AxiosError: Request failed with status code 404
+(12:12:37): [!] Main : Starting the application...
+(12:12:37): [!] Debug : Starting processor
+(12:12:37): [!] Debug : Taking Screenshot
+(12:12:38): [!] Debug : Resized image metadata: [object Object]
+(12:12:38): [!] Debug : Splitting Screenshot
+(12:12:38): [✔] Screenshot Processing Completed
+(12:12:38): [!] Debug : Writing OCR
+(12:12:38): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:12:43): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:12:44): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:12:44): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:12:45): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:12:46): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:12:46): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:12:47): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:12:48): [!] Debug : Reading OCR
+(12:12:48): [!] Debug : Reading OCR Complete
+(12:12:48): [!] Main : Starting autopilot...
+(12:12:48): [!] Autopilot : Adjusting heading
+(12:12:48): [!] Autopilot : Incorrect Heading, adjusting
+(12:12:48): [!] Autopilot : Alerting pilot of landing
+(12:12:48): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:12:48): [!] Autopilot : Adjusting throttle
+(12:12:48): [!] Autopilot : Correct Throttle
+(12:12:48): [!] Autopilot : Checking aircraft systems
+(12:12:48): [!] Autopilot : Aircraft systems are functioning normally
+(12:12:48): [!] System Info : Current fuel percentage is 92
+(12:12:48): [!] Autopilot : Adjusting altitude
+(12:12:48): [!] Autopilot : Correct Altitude
+(12:12:48): [!] Autopilot : Adjusting angle
+(12:12:48): [!] Autopilot : Level out aircraft
+(12:12:51): [!] Main : Authenticating...
+(12:12:51): [!] API error: AxiosError: Request failed with status code 404
+(12:12:51): [!] Main : Starting the application...
+(12:12:51): [!] Debug : Starting processor
+(12:12:51): [!] Debug : Taking Screenshot
+(12:12:51): [!] Debug : Resized image metadata: [object Object]
+(12:12:51): [!] Debug : Splitting Screenshot
+(12:12:52): [✔] Screenshot Processing Completed
+(12:12:52): [!] Debug : Writing OCR
+(12:12:52): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:12:56): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:12:56): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:12:57): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:12:58): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:12:58): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:12:59): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:13:00): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:13:00): [!] Debug : Reading OCR
+(12:13:00): [!] Debug : Reading OCR Complete
+(12:13:00): [!] Main : Starting autopilot...
+(12:13:00): [!] Autopilot : Adjusting heading
+(12:13:00): [!] Autopilot : Incorrect Heading, adjusting
+(12:13:00): [!] Autopilot : Alerting pilot of landing
+(12:13:00): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:13:00): [!] Autopilot : Adjusting throttle
+(12:13:00): [!] Autopilot : Correct Throttle
+(12:13:00): [!] Autopilot : Checking aircraft systems
+(12:13:00): [!] Autopilot : Aircraft systems are functioning normally
+(12:13:00): [!] System Info : Current fuel percentage is 92
+(12:13:00): [!] Autopilot : Adjusting altitude
+(12:13:00): [!] Autopilot : Correct Altitude
+(12:13:00): [!] Autopilot : Adjusting angle
+(12:13:00): [!] Autopilot : Level out aircraft
+(12:13:02): [!] Main : Authenticating...
+(12:13:02): [!] API error: AxiosError: Request failed with status code 404
+(12:13:02): [!] Main : Starting the application...
+(12:13:02): [!] Debug : Starting processor
+(12:13:02): [!] Debug : Taking Screenshot
+(12:13:02): [!] Debug : Resized image metadata: [object Object]
+(12:13:02): [!] Debug : Splitting Screenshot
+(12:13:02): [✔] Screenshot Processing Completed
+(12:13:02): [!] Debug : Writing OCR
+(12:13:02): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:13:07): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:13:07): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:13:08): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:13:09): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:13:10): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:13:10): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:13:11): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:13:12): [!] Debug : Reading OCR
+(12:13:12): [!] Debug : Reading OCR Complete
+(12:13:12): [!] Main : Starting autopilot...
+(12:13:12): [!] Autopilot : Adjusting heading
+(12:13:12): [!] Autopilot : Incorrect Heading, adjusting
+(12:13:12): [!] Autopilot : Alerting pilot of landing
+(12:13:12): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:13:12): [!] Autopilot : Adjusting throttle
+(12:13:12): [!] Autopilot : Correct Throttle
+(12:13:12): [!] Autopilot : Checking aircraft systems
+(12:13:12): [!] Autopilot : Aircraft systems are functioning normally
+(12:13:12): [!] System Info : Current fuel percentage is 92
+(12:13:12): [!] Autopilot : Adjusting altitude
+(12:13:12): [!] Autopilot : Correct Altitude
+(12:13:12): [!] Autopilot : Adjusting angle
+(12:13:12): [!] Autopilot : Level out aircraft
+(12:13:13): [!] Main : Authenticating...
+(12:13:14): [!] API error: AxiosError: Request failed with status code 404
+(12:13:14): [!] Main : Starting the application...
+(12:13:14): [!] Debug : Starting processor
+(12:13:14): [!] Debug : Taking Screenshot
+(12:13:14): [!] Debug : Resized image metadata: [object Object]
+(12:13:14): [!] Debug : Splitting Screenshot
+(12:13:14): [✔] Screenshot Processing Completed
+(12:13:14): [!] Debug : Writing OCR
+(12:13:14): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:13:18): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:13:19): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:13:20): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:13:21): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:13:21): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:13:22): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:13:23): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:13:23): [!] Debug : Reading OCR
+(12:13:23): [!] Debug : Reading OCR Complete
+(12:13:23): [!] Main : Starting autopilot...
+(12:13:23): [!] Autopilot : Adjusting heading
+(12:13:23): [!] Autopilot : Incorrect Heading, adjusting
+(12:13:23): [!] Autopilot : Alerting pilot of landing
+(12:13:23): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:13:23): [!] Autopilot : Adjusting throttle
+(12:13:23): [!] Autopilot : Correct Throttle
+(12:13:23): [!] Autopilot : Checking aircraft systems
+(12:13:23): [!] Autopilot : Aircraft systems are functioning normally
+(12:13:23): [!] System Info : Current fuel percentage is 92
+(12:13:23): [!] Autopilot : Adjusting altitude
+(12:13:23): [!] Autopilot : Correct Altitude
+(12:13:23): [!] Autopilot : Adjusting angle
+(12:13:23): [!] Autopilot : Level out aircraft
+(12:13:25): [!] Main : Authenticating...
+(12:13:25): [!] API error: AxiosError: Request failed with status code 404
+(12:13:25): [!] Main : Starting the application...
+(12:13:25): [!] Debug : Starting processor
+(12:13:25): [!] Debug : Taking Screenshot
+(12:13:25): [!] Debug : Resized image metadata: [object Object]
+(12:13:25): [!] Debug : Splitting Screenshot
+(12:13:26): [✔] Screenshot Processing Completed
+(12:13:26): [!] Debug : Writing OCR
+(12:13:26): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:13:30): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:13:31): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:13:31): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:13:32): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:13:33): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:13:33): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:13:34): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:13:35): [!] Debug : Reading OCR
+(12:13:35): [!] Debug : Reading OCR Complete
+(12:13:35): [!] Main : Starting autopilot...
+(12:13:35): [!] Autopilot : Adjusting heading
+(12:13:35): [!] Autopilot : Incorrect Heading, adjusting
+(12:13:35): [!] Autopilot : Alerting pilot of landing
+(12:13:35): [!] Autopilot : Adjusting throttle
+(12:13:35): [!] Autopilot : Correct Throttle
+(12:13:35): [!] Autopilot : Checking aircraft systems
+(12:13:35): [!] Autopilot : Aircraft systems are functioning normally
+(12:13:35): [!] System Info : Current fuel percentage is 92
+(12:13:35): [!] Autopilot : Adjusting altitude
+(12:13:35): [!] Autopilot : Correct Altitude
+(12:13:35): [!] Autopilot : Adjusting angle
+(12:13:35): [!] Autopilot : Level out aircraft
+(12:13:36): [!] Main : Authenticating...
+(12:13:36): [!] API error: AxiosError: Request failed with status code 404
+(12:13:36): [!] Main : Starting the application...
+(12:13:36): [!] Debug : Starting processor
+(12:13:36): [!] Debug : Taking Screenshot
+(12:13:37): [!] Debug : Resized image metadata: [object Object]
+(12:13:37): [!] Debug : Splitting Screenshot
+(12:13:37): [✔] Screenshot Processing Completed
+(12:13:37): [!] Debug : Writing OCR
+(12:13:37): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:13:41): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:13:42): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:13:43): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:13:43): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:13:44): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:13:45): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:13:45): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:13:46): [!] Debug : Reading OCR
+(12:13:46): [!] Debug : Reading OCR Complete
+(12:13:46): [!] Main : Starting autopilot...
+(12:13:46): [!] Autopilot : Adjusting heading
+(12:13:46): [!] Autopilot : Incorrect Heading, adjusting
+(12:13:46): [!] Autopilot : Alerting pilot of landing
+(12:13:46): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:13:46): [!] Autopilot : Adjusting throttle
+(12:13:46): [!] Autopilot : Correct Throttle
+(12:13:46): [!] Autopilot : Checking aircraft systems
+(12:13:46): [!] Autopilot : Aircraft systems are functioning normally
+(12:13:46): [!] System Info : Current fuel percentage is 92
+(12:13:46): [!] Autopilot : Adjusting altitude
+(12:13:46): [!] Autopilot : Correct Altitude
+(12:13:46): [!] Autopilot : Adjusting angle
+(12:13:46): [!] Autopilot : Correct Angle
+(12:15:40): [!] Main : Authenticating...
+(12:15:40): [!] API error: AxiosError: Request failed with status code 404
+(12:15:40): [!] Main : Starting the application...
+(12:15:40): [!] Debug : Starting processor
+(12:15:40): [!] Debug : Taking Screenshot
+(12:15:41): [!] Debug : Resized image metadata: [object Object]
+(12:15:41): [!] Debug : Splitting Screenshot
+(12:15:41): [✔] Screenshot Processing Completed
+(12:15:41): [!] Debug : Writing OCR
+(12:15:41): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:15:44): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:15:45): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:15:46): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:15:46): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:15:47): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:15:48): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:15:48): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:15:49): [!] Debug : Reading OCR
+(12:15:49): [!] Debug : Reading OCR Complete
+(12:15:49): [!] Main : Starting autopilot...
+(12:15:49): [!] Autopilot : Adjusting heading
+(12:15:49): [!] Autopilot : Incorrect Heading, adjusting
+(12:15:49): [!] Autopilot : Alerting pilot of landing
+(12:15:49): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:15:49): [!] Autopilot : Adjusting throttle
+(12:15:49): [!] Autopilot : Correct Throttle
+(12:15:49): [!] Autopilot : Checking aircraft systems
+(12:15:49): [!] Autopilot : Aircraft systems are functioning normally
+(12:15:49): [!] System Info : Current fuel percentage is 92
+(12:15:49): [!] Main : Authenticating...
+(12:15:49): [!] Autopilot : Adjusting altitude
+(12:15:49): [!] Autopilot : Correct Altitude
+(12:15:49): [!] Autopilot : Adjusting angle
+(12:15:49): [!] Autopilot : Level out aircraft
+(12:15:49): [!] API error: AxiosError: Request failed with status code 404
+(12:15:49): [!] Main : Starting the application...
+(12:15:49): [!] Debug : Starting processor
+(12:15:49): [!] Debug : Taking Screenshot
+(12:15:49): [!] Debug : Resized image metadata: [object Object]
+(12:15:49): [!] Debug : Splitting Screenshot
+(12:15:50): [✔] Screenshot Processing Completed
+(12:15:50): [!] Debug : Writing OCR
+(12:15:50): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:15:51): [!] Main : Authenticating...
+(12:15:51): [!] API error: AxiosError: Request failed with status code 404
+(12:15:51): [!] Main : Starting the application...
+(12:15:51): [!] Debug : Starting processor
+(12:15:51): [!] Debug : Taking Screenshot
+(12:15:51): [!] Debug : Resized image metadata: [object Object]
+(12:15:51): [!] Debug : Splitting Screenshot
+(12:15:51): [✔] Screenshot Processing Completed
+(12:15:51): [!] Debug : Writing OCR
+(12:15:51): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:15:53): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:15:54): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:15:54): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:15:54): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:15:55): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:15:55): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:15:56): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:15:56): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:15:56): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:15:56): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:15:57): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:15:57): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:15:58): [!] Debug : Reading OCR
+(12:15:58): [!] Debug : Reading OCR Complete
+(12:15:58): [!] Main : Starting autopilot...
+(12:15:58): [!] Autopilot : Adjusting heading
+(12:15:58): [!] Autopilot : Incorrect Heading, adjusting
+(12:15:58): [!] Autopilot : Alerting pilot of landing
+(12:15:58): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:15:58): [!] Autopilot : Adjusting throttle
+(12:15:58): [!] Autopilot : Correct Throttle
+(12:15:58): [!] Autopilot : Checking aircraft systems
+(12:15:58): [!] Autopilot : Aircraft systems are functioning normally
+(12:15:58): [!] System Info : Current fuel percentage is 92
+(12:15:58): [!] Main : Authenticating...
+(12:15:58): [!] Autopilot : Adjusting altitude
+(12:15:58): [!] Autopilot : Correct Altitude
+(12:15:58): [!] Autopilot : Adjusting angle
+(12:15:58): [!] Autopilot : Level out aircraft
+(12:15:58): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:15:58): [!] API error: AxiosError: Request failed with status code 404
+(12:15:58): [!] Main : Starting the application...
+(12:15:58): [!] Debug : Starting processor
+(12:15:58): [!] Debug : Taking Screenshot
+(12:15:58): [!] Debug : Resized image metadata: [object Object]
+(12:15:58): [!] Debug : Splitting Screenshot
+(12:15:59): [✔] Screenshot Processing Completed
+(12:15:59): [!] Debug : Writing OCR
+(12:15:59): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:15:59): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:15:59): [!] Debug : Reading OCR
+(12:15:59): [!] Debug : Reading OCR Complete
+(12:15:59): [!] Main : Starting autopilot...
+(12:15:59): [!] Autopilot : Adjusting heading
+(12:15:59): [!] Autopilot : Correct Heading
+(12:15:59): [!] Autopilot : Alerting pilot of landing
+(12:15:59): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:15:59): [!] Autopilot : Adjusting throttle
+(12:15:59): [!] Autopilot : Correct Throttle
+(12:15:59): [!] Autopilot : Checking aircraft systems
+(12:15:59): [!] Autopilot : Aircraft systems are functioning normally
+(12:15:59): [!] System Info : Current fuel percentage is 92
+(12:15:59): [!] Main : Authenticating...
+(12:15:59): [!] Autopilot : Adjusting altitude
+(12:15:59): [!] Autopilot : Correct Altitude
+(12:15:59): [!] Autopilot : Adjusting angle
+(12:15:59): [!] Autopilot : Correct Angle
+(12:15:59): [!] API error: AxiosError: Request failed with status code 404
+(12:15:59): [!] Main : Starting the application...
+(12:15:59): [!] Debug : Starting processor
+(12:15:59): [!] Debug : Taking Screenshot
+(12:16:00): [!] Main : Authenticating...
+(12:16:00): [!] API error: AxiosError: Request failed with status code 404
+(12:16:00): [!] Main : Starting the application...
+(12:16:00): [!] Debug : Starting processor
+(12:16:00): [!] Debug : Taking Screenshot
+(12:16:00): [!] Debug : Resized image metadata: [object Object]
+(12:16:00): [!] Debug : Splitting Screenshot
+(12:16:00): [!] Error : Error: Input file contains unsupported image format
+(12:16:00): [!] Debug : Writing OCR
+(12:16:00): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:16:00): [!] Debug : Resized image metadata: [object Object]
+(12:16:00): [!] Debug : Splitting Screenshot
+(12:16:00): [✔] Screenshot Processing Completed
+(12:16:00): [!] Debug : Writing OCR
+(12:16:00): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:16:03): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:16:03): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:16:04): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:16:04): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:16:04): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:16:04): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:16:05): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:16:05): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:16:05): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:16:05): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:16:05): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:16:06): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:16:06): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:16:06): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:16:07): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:16:07): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:16:07): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:16:08): [!] Debug : Reading OCR
+(12:16:08): [!] Debug : Reading OCR Complete
+(12:16:08): [!] Main : Starting autopilot...
+(12:16:08): [!] Autopilot : Adjusting heading
+(12:16:08): [!] Autopilot : Incorrect Heading, adjusting
+(12:16:08): [!] Autopilot : Alerting pilot of landing
+(12:16:08): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:16:08): [!] Autopilot : Adjusting throttle
+(12:16:08): [!] Autopilot : Correct Throttle
+(12:16:08): [!] Autopilot : Checking aircraft systems
+(12:16:08): [!] Autopilot : Aircraft systems are functioning normally
+(12:16:08): [!] System Info : Current fuel percentage is 92
+(12:16:08): [!] Main : Authenticating...
+(12:16:08): [!] Autopilot : Adjusting altitude
+(12:16:08): [!] Autopilot : Correct Altitude
+(12:16:08): [!] Autopilot : Adjusting angle
+(12:16:08): [!] Autopilot : Level out aircraft
+(12:16:08): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:16:08): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:16:08): [!] API error: AxiosError: Request failed with status code 404
+(12:16:08): [!] Main : Starting the application...
+(12:16:08): [!] Debug : Starting processor
+(12:16:08): [!] Debug : Taking Screenshot
+(12:16:08): [!] Debug : Resized image metadata: [object Object]
+(12:16:08): [!] Debug : Splitting Screenshot
+(12:16:09): [✔] Screenshot Processing Completed
+(12:16:09): [!] Debug : Writing OCR
+(12:16:09): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:16:09): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:16:09): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:16:10): [!] Debug : Reading OCR
+(12:16:10): [!] Debug : Reading OCR Complete
+(12:16:10): [!] Main : Starting autopilot...
+(12:16:10): [!] Autopilot : Adjusting heading
+(12:16:10): [!] Autopilot : Correct Heading
+(12:16:10): [!] Autopilot : Alerting pilot of landing
+(12:16:10): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:16:10): [!] Autopilot : Adjusting throttle
+(12:16:10): [!] Autopilot : Correct Throttle
+(12:16:10): [!] Autopilot : Checking aircraft systems
+(12:16:10): [!] Autopilot : Aircraft systems are functioning normally
+(12:16:10): [!] System Info : Current fuel percentage is 92
+(12:16:10): [!] Main : Authenticating...
+(12:16:10): [!] Autopilot : Adjusting altitude
+(12:16:10): [!] Autopilot : Correct Altitude
+(12:16:10): [!] Autopilot : Adjusting angle
+(12:16:10): [!] Autopilot : Correct Angle
+(12:16:10): [!] Debug : Reading OCR
+(12:16:10): [!] Debug : Reading OCR Complete
+(12:16:10): [!] Main : Starting autopilot...
+(12:16:10): [!] Autopilot : Adjusting heading
+(12:16:10): [!] Autopilot : Correct Heading
+(12:16:10): [!] Autopilot : Alerting pilot of landing
+(12:16:10): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:16:10): [!] Autopilot : Adjusting throttle
+(12:16:10): [!] Autopilot : Correct Throttle
+(12:16:10): [!] Autopilot : Checking aircraft systems
+(12:16:10): [!] Autopilot : Aircraft systems are functioning normally
+(12:16:10): [!] System Info : Current fuel percentage is 92
+(12:16:10): [!] Main : Authenticating...
+(12:16:10): [!] Autopilot : Adjusting altitude
+(12:16:10): [!] Autopilot : Correct Altitude
+(12:16:10): [!] Autopilot : Adjusting angle
+(12:16:10): [!] Autopilot : Correct Angle
+(12:16:10): [!] Main : Authenticating...
+(12:16:10): [!] API error: AxiosError: Request failed with status code 404
+(12:16:10): [!] Main : Starting the application...
+(12:16:10): [!] Debug : Starting processor
+(12:16:10): [!] Debug : Taking Screenshot
+(12:16:10): [!] API error: AxiosError: Request failed with status code 404
+(12:16:10): [!] Main : Starting the application...
+(12:16:10): [!] Debug : Starting processor
+(12:16:10): [!] Debug : Taking Screenshot
+(12:16:10): [!] API error: AxiosError: Request failed with status code 404
+(12:16:10): [!] Main : Starting the application...
+(12:16:10): [!] Debug : Starting processor
+(12:16:10): [!] Debug : Taking Screenshot
+(12:16:10): [!] Error : Error: Input file contains unsupported image format
+(12:16:10): [!] Debug : Writing OCR
+(12:16:10): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:16:10): [!] Error : Error: Input file contains unsupported image format
+(12:16:10): [!] Debug : Writing OCR
+(12:16:10): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:16:10): [!] Debug : Resized image metadata: [object Object]
+(12:16:11): [!] Debug : Splitting Screenshot
+(12:16:11): [✔] Screenshot Processing Completed
+(12:16:11): [!] Debug : Writing OCR
+(12:16:11): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:16:14): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:16:14): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:16:15): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:16:15): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:16:15): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:16:15): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:16:16): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:16:16): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:16:16): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:16:16): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:16:16): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:16:17): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:16:17): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:16:17): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:16:17): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:16:17): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:16:17): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:16:18): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:16:18): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:16:18): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:16:18): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:16:18): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:16:19): [!] Debug : Reading OCR
+(12:16:19): [!] Debug : Reading OCR Complete
+(12:16:19): [!] Main : Starting autopilot...
+(12:16:19): [!] Autopilot : Adjusting heading
+(12:16:19): [!] Autopilot : Incorrect Heading, adjusting
+(12:16:19): [!] Autopilot : Turn left
+(12:16:19): [!] Autopilot : Alerting pilot of landing
+(12:16:19): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:16:19): [!] Autopilot : Checking aircraft systems
+(12:16:19): [!] Autopilot : Aircraft systems are functioning normally
+(12:16:19): [!] System Info : Current fuel percentage is 92
+(12:16:19): [!] Main : Authenticating...
+(12:16:19): [!] API error: AxiosError: Request failed with status code 404
+(12:16:19): [!] Main : Starting the application...
+(12:16:19): [!] Debug : Starting processor
+(12:16:19): [!] Debug : Taking Screenshot
+(12:16:19): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:16:19): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:16:19): [!] Debug : Resized image metadata: [object Object]
+(12:16:19): [!] Debug : Splitting Screenshot
+(12:16:19): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:16:19): [✔] Screenshot Processing Completed
+(12:16:19): [!] Debug : Writing OCR
+(12:16:19): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:16:20): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:16:20): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:16:20): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:16:20): [!] Main : Authenticating...
+(12:16:21): [!] API error: AxiosError: Request failed with status code 404
+(12:16:21): [!] Main : Starting the application...
+(12:16:21): [!] Debug : Starting processor
+(12:16:21): [!] Debug : Taking Screenshot
+(12:16:21): [!] Debug : Reading OCR
+(12:16:21): [!] Debug : Reading OCR Complete
+(12:16:21): [!] Main : Starting autopilot...
+(12:16:21): [!] Autopilot : Adjusting heading
+(12:16:21): [!] Autopilot : Correct Heading
+(12:16:21): [!] Autopilot : Alerting pilot of landing
+(12:16:21): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:16:21): [!] Autopilot : Adjusting throttle
+(12:16:21): [!] Autopilot : Correct Throttle
+(12:16:21): [!] Autopilot : Checking aircraft systems
+(12:16:21): [!] Autopilot : Aircraft systems are functioning normally
+(12:16:21): [!] System Info : Current fuel percentage is 92
+(12:16:21): [!] Main : Authenticating...
+(12:16:21): [!] Autopilot : Adjusting altitude
+(12:16:21): [!] Autopilot : Correct Altitude
+(12:16:21): [!] Autopilot : Adjusting angle
+(12:16:21): [!] Autopilot : Correct Angle
+(12:16:21): [!] API error: AxiosError: Request failed with status code 404
+(12:16:21): [!] Main : Starting the application...
+(12:16:21): [!] Debug : Starting processor
+(12:16:21): [!] Debug : Taking Screenshot
+(12:16:21): [!] Debug : Reading OCR
+(12:16:21): [!] Debug : Reading OCR Complete
+(12:16:21): [!] Main : Starting autopilot...
+(12:16:21): [!] Autopilot : Adjusting heading
+(12:16:21): [!] Autopilot : Correct Heading
+(12:16:21): [!] Autopilot : Alerting pilot of landing
+(12:16:21): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:16:21): [!] Autopilot : Adjusting throttle
+(12:16:21): [!] Autopilot : Correct Throttle
+(12:16:21): [!] Autopilot : Checking aircraft systems
+(12:16:21): [!] Autopilot : Aircraft systems are functioning normally
+(12:16:21): [!] System Info : Current fuel percentage is 92
+(12:16:21): [!] Main : Authenticating...
+(12:16:21): [!] Autopilot : Adjusting altitude
+(12:16:21): [!] Autopilot : Correct Altitude
+(12:16:21): [!] Autopilot : Adjusting angle
+(12:16:21): [!] Autopilot : Correct Angle
+(12:16:21): [!] Error : Error: Input file contains unsupported image format
+(12:16:21): [!] Debug : Writing OCR
+(12:16:21): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:16:21): [!] API error: AxiosError: Request failed with status code 404
+(12:16:21): [!] Main : Starting the application...
+(12:16:21): [!] Debug : Starting processor
+(12:16:21): [!] Debug : Taking Screenshot
+(12:16:21): [!] Debug : Reading OCR
+(12:16:21): [!] Debug : Reading OCR Complete
+(12:16:21): [!] Main : Starting autopilot...
+(12:16:21): [!] Autopilot : Adjusting heading
+(12:16:21): [!] Autopilot : Correct Heading
+(12:16:21): [!] Autopilot : Alerting pilot of landing
+(12:16:21): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:16:21): [!] Autopilot : Adjusting throttle
+(12:16:21): [!] Autopilot : Correct Throttle
+(12:16:21): [!] Autopilot : Checking aircraft systems
+(12:16:21): [!] Autopilot : Aircraft systems are functioning normally
+(12:16:21): [!] System Info : Current fuel percentage is undefined
+(12:16:21): [!] Main : Authenticating...
+(12:16:21): [!] Autopilot : Adjusting altitude
+(12:16:21): [!] Autopilot : Correct Altitude
+(12:16:21): [!] Autopilot : Adjusting angle
+(12:16:21): [!] Autopilot : Correct Angle
+(12:16:21): [!] Debug : Resized image metadata: [object Object]
+(12:16:21): [!] Debug : Splitting Screenshot
+(12:16:21): [!] Error : Error: Input file contains unsupported image format
+(12:16:22): [!] Debug : Writing OCR
+(12:16:22): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:16:22): [!] API error: AxiosError: Request failed with status code 404
+(12:16:22): [!] Main : Starting the application...
+(12:16:22): [!] Debug : Starting processor
+(12:16:22): [!] Debug : Taking Screenshot
+(12:16:22): [!] Debug : Resized image metadata: [object Object]
+(12:16:22): [!] Debug : Splitting Screenshot
+(12:16:22): [✔] Screenshot Processing Completed
+(12:16:22): [!] Debug : Writing OCR
+(12:16:22): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:17:20): [!] Main : Authenticating...
+(12:17:20): [!] API error: AxiosError: Request failed with status code 404
+(12:17:20): [!] Main : Starting the application...
+(12:17:20): [!] Debug : Starting processor
+(12:17:20): [!] Debug : Taking Screenshot
+(12:17:20): [!] Debug : Resized image metadata: [object Object]
+(12:17:20): [!] Debug : Splitting Screenshot
+(12:17:20): [✔] Screenshot Processing Completed
+(12:17:20): [!] Debug : Writing OCR
+(12:17:20): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:17:24): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:17:24): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:17:25): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:17:26): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:17:26): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:17:27): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:17:27): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:17:28): [!] Debug : Reading OCR
+(12:17:28): [!] Debug : Reading OCR Complete
+(12:17:28): [!] Main : Starting autopilot...
+(12:17:28): [!] Autopilot : Adjusting heading
+(12:17:28): [!] Autopilot : Incorrect Heading, adjusting
+(12:17:28): [!] Autopilot : Alerting pilot of landing
+(12:17:28): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:17:28): [!] Autopilot : Adjusting throttle
+(12:17:28): [!] Autopilot : Correct Throttle
+(12:17:28): [!] Autopilot : Checking aircraft systems
+(12:17:28): [!] Autopilot : Aircraft systems are functioning normally
+(12:17:28): [!] System Info : Current fuel percentage is 92
+(12:17:28): [!] Autopilot : Adjusting altitude
+(12:17:28): [!] Autopilot : Correct Altitude
+(12:17:28): [!] Autopilot : Adjusting angle
+(12:17:28): [!] Autopilot : Level out aircraft
+(12:17:30): [!] Main : Authenticating...
+(12:17:30): [!] API error: AxiosError: Request failed with status code 404
+(12:17:30): [!] Main : Starting the application...
+(12:17:30): [!] Debug : Starting processor
+(12:17:30): [!] Debug : Taking Screenshot
+(12:17:30): [!] Debug : Resized image metadata: [object Object]
+(12:17:30): [!] Debug : Splitting Screenshot
+(12:17:30): [✔] Screenshot Processing Completed
+(12:17:30): [!] Debug : Writing OCR
+(12:17:30): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:17:33): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:17:33): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:17:34): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:17:34): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:17:35): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:17:36): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:17:36): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:17:37): [!] Debug : Reading OCR
+(12:17:37): [!] Debug : Reading OCR Complete
+(12:17:37): [!] Main : Starting autopilot...
+(12:17:37): [!] Autopilot : Adjusting heading
+(12:17:37): [!] Autopilot : Incorrect Heading, adjusting
+(12:17:37): [!] Autopilot : Alerting pilot of landing
+(12:17:37): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:17:37): [!] Autopilot : Adjusting throttle
+(12:17:37): [!] Autopilot : Correct Throttle
+(12:17:37): [!] Autopilot : Checking aircraft systems
+(12:17:37): [!] Autopilot : Aircraft systems are functioning normally
+(12:17:37): [!] System Info : Current fuel percentage is 92
+(12:17:37): [!] Autopilot : Adjusting altitude
+(12:17:37): [!] Autopilot : Correct Altitude
+(12:17:37): [!] Autopilot : Adjusting angle
+(12:17:37): [!] Autopilot : Level out aircraft
+(12:17:38): [!] Main : Authenticating...
+(12:17:38): [!] API error: AxiosError: Request failed with status code 404
+(12:17:38): [!] Main : Starting the application...
+(12:17:38): [!] Debug : Starting processor
+(12:17:38): [!] Debug : Taking Screenshot
+(12:17:39): [!] Debug : Resized image metadata: [object Object]
+(12:17:39): [!] Debug : Splitting Screenshot
+(12:17:39): [✔] Screenshot Processing Completed
+(12:17:39): [!] Debug : Writing OCR
+(12:17:39): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:17:42): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:17:42): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:17:43): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:17:44): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:17:44): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:17:45): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:17:45): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:17:46): [!] Debug : Reading OCR
+(12:17:46): [!] Debug : Reading OCR Complete
+(12:17:46): [!] Main : Starting autopilot...
+(12:17:46): [!] Autopilot : Adjusting heading
+(12:17:46): [!] Autopilot : Incorrect Heading, adjusting
+(12:17:46): [!] Autopilot : Alerting pilot of landing
+(12:17:46): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:17:46): [!] Autopilot : Adjusting throttle
+(12:17:46): [!] Autopilot : Correct Throttle
+(12:17:46): [!] Autopilot : Checking aircraft systems
+(12:17:46): [!] Autopilot : Aircraft systems are functioning normally
+(12:17:46): [!] System Info : Current fuel percentage is 92
+(12:17:46): [!] Autopilot : Adjusting altitude
+(12:17:46): [!] Autopilot : Correct Altitude
+(12:17:46): [!] Autopilot : Adjusting angle
+(12:17:46): [!] Autopilot : Level out aircraft
+(12:17:47): [!] Main : Authenticating...
+(12:17:48): [!] API error: AxiosError: Request failed with status code 404
+(12:17:48): [!] Main : Starting the application...
+(12:17:48): [!] Debug : Starting processor
+(12:17:48): [!] Debug : Taking Screenshot
+(12:17:48): [!] Debug : Resized image metadata: [object Object]
+(12:17:48): [!] Debug : Splitting Screenshot
+(12:17:48): [✔] Screenshot Processing Completed
+(12:17:48): [!] Debug : Writing OCR
+(12:17:48): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:17:51): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:17:51): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:17:52): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:17:52): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:17:53): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:17:54): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:17:54): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:17:55): [!] Debug : Reading OCR
+(12:17:55): [!] Debug : Reading OCR Complete
+(12:17:55): [!] Main : Starting autopilot...
+(12:17:55): [!] Autopilot : Adjusting heading
+(12:17:55): [!] Autopilot : Incorrect Heading, adjusting
+(12:17:55): [!] Autopilot : Alerting pilot of landing
+(12:17:55): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:17:55): [!] Autopilot : Adjusting throttle
+(12:17:55): [!] Autopilot : Correct Throttle
+(12:17:55): [!] Autopilot : Checking aircraft systems
+(12:17:55): [!] Autopilot : Aircraft systems are functioning normally
+(12:17:55): [!] System Info : Current fuel percentage is 92
+(12:17:55): [!] Autopilot : Adjusting altitude
+(12:17:55): [!] Autopilot : Correct Altitude
+(12:17:55): [!] Autopilot : Adjusting angle
+(12:17:55): [!] Autopilot : Level out aircraft
+(12:17:56): [!] Main : Authenticating...
+(12:17:56): [!] API error: AxiosError: Request failed with status code 404
+(12:17:56): [!] Main : Starting the application...
+(12:17:56): [!] Debug : Starting processor
+(12:17:56): [!] Debug : Taking Screenshot
+(12:17:57): [!] Debug : Resized image metadata: [object Object]
+(12:17:57): [!] Debug : Splitting Screenshot
+(12:17:57): [✔] Screenshot Processing Completed
+(12:17:57): [!] Debug : Writing OCR
+(12:17:57): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:17:59): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:18:00): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:18:00): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:18:01): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:18:02): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:18:02): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:18:03): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:18:03): [!] Debug : Reading OCR
+(12:18:03): [!] Debug : Reading OCR Complete
+(12:18:03): [!] Main : Starting autopilot...
+(12:18:03): [!] Autopilot : Adjusting heading
+(12:18:03): [!] Autopilot : Incorrect Heading, adjusting
+(12:18:03): [!] Autopilot : Alerting pilot of landing
+(12:18:03): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:18:03): [!] Autopilot : Adjusting throttle
+(12:18:03): [!] Autopilot : Correct Throttle
+(12:18:03): [!] Autopilot : Checking aircraft systems
+(12:18:03): [!] Autopilot : Aircraft systems are functioning normally
+(12:18:03): [!] System Info : Current fuel percentage is 92
+(12:18:03): [!] Autopilot : Adjusting altitude
+(12:18:03): [!] Autopilot : Correct Altitude
+(12:18:03): [!] Autopilot : Adjusting angle
+(12:18:03): [!] Autopilot : Level out aircraft
+(12:18:05): [!] Main : Authenticating...
+(12:18:05): [!] API error: AxiosError: Request failed with status code 404
+(12:18:05): [!] Main : Starting the application...
+(12:18:05): [!] Debug : Starting processor
+(12:18:05): [!] Debug : Taking Screenshot
+(12:18:06): [!] Debug : Resized image metadata: [object Object]
+(12:18:06): [!] Debug : Splitting Screenshot
+(12:18:06): [✔] Screenshot Processing Completed
+(12:18:06): [!] Debug : Writing OCR
+(12:18:06): [!] Debug : Recongizing Image [,./output/screenshot.png,]
+(12:18:09): [!] Debug : Recongizing Image [,./output/heading_section.png,]
+(12:18:10): [!] Debug : Recongizing Image [,./output/destination_section.png,]
+(12:18:10): [!] Debug : Recongizing Image [,./output/airspeed_section.png,]
+(12:18:11): [!] Debug : Recongizing Image [,./output/altitude_section.png,]
+(12:18:11): [!] Debug : Recongizing Image [,./output/vertical_speed_section.png,]
+(12:18:12): [!] Debug : Recongizing Image [,./output/fuel_section.png,]
+(12:18:13): [!] Debug : Recongizing Image [,./output/throttle_section.png,]
+(12:18:13): [!] Debug : Reading OCR
+(12:18:13): [!] Debug : Reading OCR Complete
+(12:18:13): [!] Main : Starting autopilot...
+(12:18:13): [!] Autopilot : Adjusting heading
+(12:18:13): [!] Autopilot : Incorrect Heading, adjusting
+(12:18:13): [!] Autopilot : Alerting pilot of landing
+(12:18:13): [!] Autopilot : Distance unavaliable, please check on autopilot
+(12:18:13): [!] Autopilot : Adjusting throttle
+(12:18:13): [!] Autopilot : Correct Throttle
+(12:18:13): [!] Autopilot : Checking aircraft systems
+(12:18:13): [!] Autopilot : Aircraft systems are functioning normally
+(12:18:13): [!] System Info : Current fuel percentage is 92
+(12:18:13): [!] Autopilot : Adjusting altitude
+(12:18:13): [!] Autopilot : Correct Altitude
+(12:18:13): [!] Autopilot : Adjusting angle
+(12:18:13): [!] Autopilot : Correct Angle
